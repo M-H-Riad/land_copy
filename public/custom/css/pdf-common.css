@@ -1,0 +1,126 @@
+
+@page {
+    margin: 0; /* <any of the usual CSS values for margins> */
+    font-size: 9px;
+}
+
+
+*{
+    /*font-size: 25px;*/
+
+}
+table{
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+table tr{
+    /*margin-top: 5px;*/
+}
+th{
+
+    /*border: 1px solid #cbd2db;*/
+    font-size: 9px;
+    font-weight: normal;
+    border: 1px dotted #cbd2db;
+}
+td{
+    padding-left: 2px;
+    font-size: 9px;
+    vertical-align: top;
+    color: #000000;
+    border: none;
+    border: 1px dotted #cbd2db;
+}
+
+.light{
+    color: #343438;
+}
+img{
+    padding: 0px;
+    margin: 0px;
+}
+.greenLine{
+    border: 1px solid #cbd2db;
+}
+.borderBottom{
+    border: none;
+    border-bottom: 1px solid #cbd2db;
+}
+.grayBg{
+    background-color: #edf0f4;
+    color: black;
+    font-family: Arial;
+}
+h2{
+    color: black;
+    font-weight: normal;
+}
+p{
+    color: black;
+    margin: 0px;
+    padding: 0px;
+}
+.title, .page-title{
+    /*font-weight: bold;*/
+    font-family: Arial;
+    font-size: 12px;
+}
+.engOnly{
+    font-family: Verdana;
+}
+.w25{
+    width: 25%;
+}
+.w50{
+    width: 50%;
+}
+.w20{
+    width: 20%;
+}
+.w5{
+    width: 5%;
+}
+.w10{
+    width: 10%;
+}
+.w35{
+    width: 35%;
+}
+.w15{
+    width: 15%;
+}
+.w33{
+    width: 33%;
+}
+.noBorderTopBottom{
+    border-bottom: none;
+    border-top: none;
+}
+.noBorderLeftRight{
+    border-left: none;
+    border-right: none;
+}
+.noBorderRight{
+    border-right: none;
+}
+.noBorderLeft{
+    border-left: none;
+}
+span{
+    /*font-size: 9px;*/
+}
+.right{
+    text-align: right;
+
+}
+.noBorder {
+    border:none !important;
+}
+tfoot td{
+    font-family: verdana;
+    font-weight: bold !important;
+    font-size: 7px !important;
+}

@@ -1,0 +1,303 @@
+<script>
+    function hRentChanged()
+    {
+        if($('#h_rent').is(":checked"))
+        {
+            $(".rent_type").show();
+            $(".h_rent_type").attr('required',true);
+        }else{
+            $(".rent_type").hide();
+            $(".h_rent_type").removeAttr('required',true);
+        }
+    }
+    function titasGasChanged()
+    {
+        if($('#titas_gas').is(":checked"))
+        {
+            $(".stove").show();
+            $(".stoves").attr('required',true);
+        }else{
+            $(".stove").hide();
+            $(".stoves").removeAttr('required',true);
+        }
+    }
+    function splPayChanged()
+    {
+        if($('#spl_pay').is(":checked"))
+        {
+            $(".spl_pay_amount").show();
+            $("#spl_pay_end").attr('required',true);
+            $("#spl_pay_amount").attr('required',true);
+        }else{
+            $(".spl_pay_amount").hide();
+            $("#spl_pay_end").removeAttr('required',true);
+            $("#spl_pay_amount").removeAttr('required',true);
+        }
+    }
+    function perPayChanged()
+    {
+        if($('#personal_pay').is(":checked"))
+        {
+            $(".per_pay_amount").show();
+            $("#per_pay_end").attr('required',true);
+            $("#per_pay").attr('required',true);
+        }else{
+            $(".per_pay_amount").hide();
+            $("#per_pay_end").removeAttr('required',true);
+            $("#per_pay").removeAttr('required',true);
+        }
+    }
+    function salaryArrChanged()
+    {
+        if($('#salary_arrears').is(":checked"))
+        {
+            $(".salary_arr_amount").show();
+            $("#salary_arr_end").attr('required',true);
+            $("#salary_arr").attr('required',true);
+        }else{
+            $(".salary_arr_amount").hide();
+            $("#salary_arr_end").removeAttr('required',true);
+            $("#salary_arr").removeAttr('required',true);
+        }
+    }
+    function pfFoundRefundChanged()
+    {
+        if($('#pf_fund_refund').is(":checked"))
+        {
+            $(".pf_refund_amount").show();
+            $("#pf_refund_end").attr('required',true);
+            $("#pf_refund").attr('required',true);
+        }else{
+            $(".pf_refund_amount").hide();
+            $("#pf_refund_end").removeAttr('required',true);
+            $("#pf_refund").removeAttr('required',true);
+        }
+    }
+    function hbLoanRefundChanged()
+    {
+        if($('#hb_lone_refund').is(":checked"))
+        {
+            $(".hb_refund_amount").show();
+            $("#hb_refund_end").attr('required',true);
+            $("#hb_refund").attr('required',true);
+        }else{
+            $(".hb_refund_amount").hide();
+            $("#hb_refund_end").removeAttr('required',true);
+            $("#hb_refund").removeAttr('required',true);
+        }
+    }
+    function vhlAllowanceChanged()
+    {
+        if($('#vehicle_allowance').is(":checked"))
+        {
+            $(".vhl_alw_amount").show();
+            $("#vhl_alw_end").attr('required',true);
+            $("#vhl_alw").attr('required',true);
+        }else{
+            $(".vhl_alw_amount").hide();
+            $("#vhl_alw_end").removeAttr('required',true);
+            $("#vhl_alw").removeAttr('required',true);
+        }
+    }
+    function vhlRefundChanged()
+    {
+        if($('#vehicle_refund').is(":checked"))
+        {
+            $(".vhl_refund_amount").show();
+            $("#vhl_refund_end").attr('required',true);
+            $("#vhl_refund").attr('required',true);
+        }else{
+            $(".vhl_refund_amount").hide();
+            $("#vhl_refund_end").removeAttr('required',true);
+            $("#vhl_refund").removeAttr('required',true);
+        }
+    }
+    function hrArrearsChanged()
+    {
+        if($('#house_rent_arr').is(":checked"))
+        {
+            $(".hr_arr_amount").show();
+            $("#hr_arr_end").attr('required',true);
+            $("#hr_arr").attr('required',true);
+        }else{
+            $(".hr_arr_amount").hide();
+            $("#hr_arr_end").removeAttr('required',true);
+            $("#hr_arr").removeAttr('required',true);
+        }
+    }
+    function otherAllowanceChanged()
+    {
+        if($('#other_allowance').is(":checked"))
+        {
+            $(".other_alw_amount").show();
+            $("#other_alw_end").attr('required',true);
+            $("#other_alw").attr('required',true);
+        }else{
+            $(".other_alw_amount").hide();
+            $("#other_alw_end").removeAttr('required',true);
+            $("#other_alw").removeAttr('required',true);
+        }
+    }
+
+    /**
+     * Deduction settings js........
+     */
+
+    function transportDedChanged()
+    {
+        if($('#transport_ded').is(":checked"))
+        {
+            $(".transport_amount").show();
+            $("#transport_end").attr('required',true);
+            $("#transport").attr('required',true);
+        }else{
+            $(".transport_amount").hide();
+            $("#transport_end").removeAttr('required',true);
+            $("#transport").removeAttr('required',true);
+        }
+    }
+    function salaryDedChanged()
+    {
+        if($('#salary_ded').is(":checked"))
+        {
+            $(".sal_ded_amount").show();
+            $("#sal_ded_end").attr('required',true);
+            $("#sal_ded").attr('required',true);
+        }else{
+            $(".sal_ded_amount").hide();
+            $("#sal_ded_end").removeAttr('required',true);
+            $("#sal_ded").removeAttr('required',true);
+        }
+    }
+    function itArrDedChanged()
+    {
+        if($('#it_arr_ded').is(":checked"))
+        {
+            $(".it_arrear_ded_amount").show();
+            $("#it_arrear_ded_end").attr('required',true);
+            $("#it_arrear_ded").attr('required',true);
+        }else{
+            $(".it_arrear_ded_amount").hide();
+            $("#it_arrear_ded_end").removeAttr('required',true);
+            $("#it_arrear_ded").removeAttr('required',true);
+        }
+    }
+    function otherDedChanged()
+    {
+        if($('#other_deduction').is(":checked"))
+        {
+            $(".other_ded_amount").show();
+            $("#other_ded_end").attr('required',true);
+            $("#other_ded").attr('required',true);
+        }else{
+            $(".other_ded_amount").hide();
+            $("#other_ded_end").removeAttr('required',true);
+            $("#other_ded").removeAttr('required',true);
+        }
+    }
+    function hbLoanDedChanged()
+    {
+        if($('#hb_loan_ded').is(":checked"))
+        {
+            $(".hb_loan_ded_amount").show();
+            $("#hb_loan_ded_end").attr('required',true);
+            $("#hb_loan").attr('required',true);
+        }else{
+            $(".hb_loan_ded_amount").hide();
+            $("#hb_loan_ded_end").removeAttr('required',true);
+            $("#hb_loan").removeAttr('required',true);
+        }
+    }
+    function hbInterestDedChanged()
+    {
+        if($('#hb_interest_ded').is(":checked"))
+        {
+            $(".hb_inttr_ded_amount").show();
+            $("#hb_inttr_ded_end").attr('required',true);
+            $("#hb_inttr").attr('required',true);
+        }else{
+            $(".hb_inttr_ded_amount").hide();
+            $("#hb_inttr_ded_end").removeAttr('required',true);
+            $("#hb_inttr").removeAttr('required',true);
+        }
+    }
+
+    function pcLoneDedChanged()
+    {
+        if($('#pc_loan_ded').is(":checked"))
+        {
+            $(".pc_loan_ded_amount").show();
+            $("#pc_loan_ded_end").attr('required',true);
+            $("#pc_loan").attr('required',true);
+        }else{
+            $(".pc_loan_ded_amount").hide();
+            $("#pc_loan_ded_end").removeAttr('required',true);
+            $("#pc_loan").removeAttr('required',true);
+        }
+    }
+    function pcInterestDedChanged()
+    {
+        if($('#pc_interest_ded').is(":checked"))
+        {
+            $(".pc_inttr_ded_amount").show();
+            $("#pc_inttr_ded_end").attr('required',true);
+            $("#pc_inttr").attr('required',true);
+        }else{
+            $(".pc_inttr_ded_amount").hide();
+            $("#pc_inttr_ded_end").removeAttr('required',true);
+            $("#pc_inttr").removeAttr('required',true);
+        }
+    }
+    function vhclLoneDedChanged()
+    {
+        if($('#vhcl_loan_ded').is(":checked"))
+        {
+            $(".vhcl_loan_ded_amount").show();
+            $("#vhcl_loan_ded_end").attr('required',true);
+            $("#vhcl_loan").attr('required',true);
+        }else{
+            $(".vhcl_loan_ded_amount").hide();
+            $("#vhcl_loan_ded_end").removeAttr('required',true);
+            $("#vhcl_loan").removeAttr('required',true);
+        }
+    }
+    function vhclInterestDedChanged()
+    {
+        if($('#vhcl_interest_ded').is(":checked"))
+        {
+            $(".vhcl_inttr_ded_amount").show();
+            $("#vhcl_inttr_ded_end").attr('required',true);
+            $("#vhcl_inttr").attr('required',true);
+        }else{
+            $(".vhcl_inttr_ded_amount").hide();
+            $("#vhcl_inttr_ded_end").removeAttr('required',true);
+            $("#vhcl_inttr").removeAttr('required',true);
+        }
+    }
+    function pfLoneDedChanged()
+    {
+        if($('#pf_loan_ded').is(":checked"))
+        {
+            $(".pf_loan_ded_amount").show();
+            $("#pf_loan_ded_end").attr('required',true);
+            $("#pf_loan").attr('required',true);
+        }else{
+            $(".pf_loan_ded_amount").hide();
+            $("#pf_loan_ded_end").removeAttr('required',true);
+            $("#pf_loan").removeAttr('required',true);
+        }
+    }
+    function pfInterestDedChanged()
+    {
+        if($('#pf_interest_ded').is(":checked"))
+        {
+            $(".pf_inttr_ded_amount").show();
+            $("#pf_inttr_ded_end").attr('required',true);
+            $("#pf_inttr").attr('required',true);
+        }else{
+            $(".pf_inttr_ded_amount").hide();
+            $("#pf_inttr_ded_end").removeAttr('required',true);
+            $("#pf_inttr").removeAttr('required',true);
+        }
+    }
+</script>

@@ -1,0 +1,231 @@
+id,old_id,title,ranking_id,status
+1,1,Chief Engineer and Project Director,103,1
+2,10,Chairman,999,1
+3,20,Managing Director,101,1
+4,30,Dy Managing Director (F),102,1
+5,31,Dy Managing Director (O&M),102,1
+6,32,Dy Managing Director(PR&D),102,1
+7,101,Chief Engineer,103,1
+8,102,Superindending Engineer,107,1
+9,103,Executive Engineer,118,1
+10,104,Sub-Divisional Engineer,140,1
+11,105,Asstt. Engineer,146,1
+12,106,Sub Assistant Engineer,204,1
+13,107,Estimator,202,1
+14,108,Micro Biologist,137,1
+15,109,Asstt. Micro Biologist,149,1
+16,110,Chemist,144,1
+17,111,Asstt. Chemist,206,1
+18,112,Transport Officer,158,1
+19,113,Communication Officer,211,1
+20,114,Foreman (Auto),302,1
+21,115,Foreman (Electric),302,1
+22,116,Foreman (Mechanical),302,1
+23,117,Asstt. Foreman,315,1
+24,118,Kanango,307,1
+25,119,Wireless Operator,313,1
+26,120,Laboratary Assistant,308,1
+27,121,Cran Operator,999,1
+28,122,Draftsman,306,1
+29,123,Sewer Inspector,329,1
+30,124,Filter-in-charge,999,1
+31,125,Filter Operator,322,1
+32,126,Filter Assistant,410,1
+33,127,Pipe Line Inspector,333,1
+34,128,Pipe Line Carpanter,999,1
+35,129,Asstt. Pipe Line Carpenter,999,1
+36,130,Machanic (Auto),323,1
+37,131,Machanic (Pump),323,1
+38,132,Asstt. Mechanic,408,1
+39,133,Surveyor,331,1
+40,134,Mechanist,999,1
+41,135,Asstt. Machanist,999,1
+42,136,Generator Operator,321,1
+43,137,Pump Operator,327,1
+44,138,Apprentice Pump Operator,401,1
+45,139,Sewer Cleaning Track Oper,999,1
+46,140,Electrician (Auto),319,1
+47,141,Asstt. Auto-Electrician,999,1
+48,142,Electrician (General),318,1
+49,143,Asstt. Electrician,411,1
+50,144,Rod Machine Driver,999,1
+51,145,Filter,999,1
+52,146,Treatment Plant Asstt,999,1
+53,147,Tracer,999,1
+54,148,Liftman,404,1
+55,149,Sample Collector,999,1
+56,150,Welder,999,1
+57,151,Winder,999,1
+58,152,Asstt. Winder,999,1
+59,153,Painter,999,1
+60,154,Asstt. Painter,999,1
+61,155,Danter,999,1
+62,156,Amonea Blue-Print Operato,999,1
+63,157,Mation,999,1
+64,158,Crane  Helper,415,1
+65,159,Weighter,999,1
+66,160,Outfall Helper,415,1
+67,161,Chainman,412,1
+68,162,Sewer Cleaner,999,1
+69,163,Helper,415,1
+70,164,Volcanizer,999,1
+71,165,LDA Cum Complain Attendant,999,1
+72,166,Technician,311,1
+73,167,Store Keeper,330,1
+74,168,Store Assistant,418,1
+75,169,Carpenter,999,1
+76,170,Asstt. Carpenter,999,1
+77,171,Pipe Line Mechanic,326,1
+78,172,Asstt. Pipe Line Mechanic,409,1
+79,173,Blue Print M/Operator,999,1
+80,174,Chlorine Mechanic,337,1
+81,175,Line Man,999,1
+82,176,Tubewell Machanic,999,1
+83,177,Bulb Operator,999,1
+84,178,Work Assistant,999,1
+85,179,Diver,999,1
+86,180,Addl C.E & Proj.Director,999,1
+87,181,Dy Chief Microbiologist,122,1
+88,182,Asstt. Accountant,335,1
+89,183,Bench Assistant,314,1
+90,184,GIS Specialist,130,1
+91,185,Maintenance Engr (Hard),142,1
+92,186,Maintenance Engr (Net),142,1
+93,187,Asstt. Maint. Engr (Hard),150,2
+94,188,Asstt. Maint. Engr (Net),150,2
+95,200,Member (Finance),999,1
+96,201,Commercial Manager,104,2
+97,211,Chief Accounts Officer,108,1
+98,212,Dy Chief Accounts Officer,127,1
+99,213,Accounts Officer,145,1
+100,214,Accountant,205,1
+101,215,Auditor (Accounts),999,1
+102,217,Trainer (Curriculum),139,1
+103,218,Trainer (Engineering),139,1
+104,219,Trainer (Evaluation),139,1
+105,220,Trainer (Admin & Fin),139,1
+106,221,Chief Revenue Officer,109,1
+107,222,Dy Chief Revenue Officer,124,1
+108,223,Revenue Officer,156,1
+109,224,Asstt. Revenue Officer,207,1
+110,225,Revenue Inspector,328,1
+111,226,Comto-Meter Operator,999,1
+112,231,Sr. Systems Analyst (MIS),111,1
+113,232,Systems Analyst (MIS),116,1
+114,233,Asstt. Systems Analyst,142,1
+115,234,Programmer,131,1
+116,235,Asstt. Programmer,150,1
+117,236,Sr. Computer Operator,999,1
+118,237,Computer Supervisor,999,1
+119,238,Computer Operator,301,1
+120,250,Co-ordinator(Comp. Bill),999,1
+121,401,Secretary,106,1
+122,402,Deputy Secretary,120,1
+123,403,Asstt. Secretary,143,1
+124,404,Office Superintendent,213,1
+125,405,U D A,312,1
+126,406,Office Asstt. Cum DEO,324,1
+127,407,Labour & Welfare Officer,999,1
+128,408,Law Officer,115,1
+129,409,Sr. Medical Officer,132,1
+130,410,Medical Officer,154,1
+131,411,Medical Attendant,309,1
+132,412,Deputy Chief,113,1
+133,413,Economist/Asstt. Chief,999,1
+134,414,Planning Officer,999,1
+135,415,Research Officer,155,1
+136,416,Research Assistant,203,1
+137,417,Sr. Audit Officer,126,1
+138,418,Audit Officer,152,1
+139,419,Auditor,210,1
+140,420,Land Officer,999,1
+141,421,Security & Intel. Officer,157,1
+142,422,Asstt. Sec & Intl Officer,208,1
+143,423,Magistrate,159,1
+144,424,Public Information Officer,117,1
+145,425,Sports Officer,999,1
+146,426,Librarian,212,1
+147,427,Liason Assistant,999,1
+148,428,Record Keeper,310,1
+149,429,File Supplier,999,1
+150,430,Photo/Dup. Machine Operat,999,1
+151,431,Head Guard/Guard Comman.,403,1
+152,432,Guard,414,1
+153,433,Gestetner Operator,999,1
+154,434,M. L. S. S.,417,1
+155,435,Mali,416,1
+156,436,Cleaner (Dry & Wet),999,1
+157,437,Stenographer,999,1
+158,438,Driver,317,1
+159,439,Sr. Office Assistant,336,1
+160,440,Office Asstt. cum DEO,999,1
+161,441,Driver - Tempo,999,1
+162,443,Cleaner,402,1
+163,444,Complain Attendant,999,1
+164,445,Generator Driver,999,1
+165,446,Xerox Machine Operator,999,1
+166,447,Record Supplier,406,1
+167,448,L. D. A. Cum Cashier,316,1
+168,449,PABX Operator,325,1
+169,450,PABX Technician,999,1
+170,451,Cashier,999,1
+171,452,Administrative Ofr,999,1
+172,461,Income Tax Advisor,999,1
+173,471,Off. Att. to Chairman,999,1
+174,472,Assistant Transport Supervisor,999,1
+175,501,Chief Training Officer,110,1
+176,502,JCTO (Engineering),999,1
+177,503,JCTO (Admn. & Fin.),999,1
+178,504,DCTO (Engineering),999,1
+179,505,DCTO (Admn. & Fin.),999,1
+180,506,Treatment Plant Assistant,999,1
+181,507,PA Cum Computer Operator,304,1
+182,508,OA Cum Data Entry Operator,324,1
+183,509,Project Director,999,1
+184,510,Additional Chief Engineer,105,1
+185,511,Dy Chief Secu./Intl. Off,121,1
+186,512,Asstt. PIO,151,1
+187,513,Sr. Community Officer,129,1
+188,514,Community Organizer,141,1
+189,515,Asstt. Consumer Rel Offr,201,1
+190,516,Dy. Chief Finance Officer,125,1
+191,517,Finance Officer,145,1
+192,601,Dy Chief Audit Officer,126,1
+193,602,Executive Engineer (AC),118,3
+194,603,Executive Engineer (CC),118,2
+195,604,Assistant Chemist (AC),303,1
+196,605,Sub Divisional Engineer (AC),140,3
+197,606,Sub Divisional Engineer (CC),140,2
+198,607,Sub Assistant Engineer (AC),204,3
+199,608,Sub Assistant Engineer (CC),204,2
+200,609,Asstt. Engineer (AC),146,3
+201,610,Asstt. Engineer (CC),146,2
+202,611,Accountant (AC),205,3
+203,612,Accountant (CC),205,2
+204,613,Superindending Engineer (AC),107,3
+205,614,Superindending Engineer (CC),107,2
+206,615,Chief Accounts Officer (AC),108,2
+207,616,Asstt. Chief(Planning)(AC),135,1
+208,617,Superindending Engineer (CC) and PD,107,2
+209,618,DCTO (CC),124,1
+210,620,Systems Manager,104,3
+211,621,Superindeng Engineer and Project Director,107,1
+212,622,Dy Managing Director (Admin),102,1
+213,623,Sr. Systems Analyst (GIS),111,2
+214,624,Sr. Systems Analyst (AC) (MIS),111,3
+215,625,Sr. Systems Analyst (AC) (GIS),111,4
+216,626,Systems Analyst (GIS),116,2
+217,627,Chief Engineer (AC),103,2
+218,628,Laboratory Technician,303,1
+219,629,Additional Chief Engineer (AC),105,2
+220,630,Additional  Chief Engineer(CC),105,1
+221,631,Dy Chief Accounts Officer(CC),127,2
+222,632,Director(Land),112,1
+223,633,Chief Revenue Officer(AC),109,3
+224,634,Chief Revenue Officer(CC),109,2
+225,635,Deputy Secretary(CC),120,2
+226,636,Deputy Secretary(AC),120,3
+227,637,U D A(CC),312,2
+228,638,U D A(AC),312,3
+229,639,Asstt. Secretary  (CC),143,2
+230,640,Asstt. Secretary (AC),143,3

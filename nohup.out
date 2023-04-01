@@ -1,0 +1,11 @@
+PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/lib/php/modules/intl.so' - /usr/lib/php/modules/intl.so: undefined symbol: zend_strpprintf in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/lib/php/modules/igbinary.so' - /usr/lib/php/modules/igbinary.so: undefined symbol: zend_empty_string in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library '/usr/lib/php/modules/intl.so' - /usr/lib/php/modules/intl.so: undefined symbol: zend_strpprintf in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library '/usr/lib/php/modules/igbinary.so' - /usr/lib/php/modules/igbinary.so: undefined symbol: zend_empty_string in Unknown on line 0
+
+                                           
+  The "--timout:0" option does not exist.  
+                                           
+

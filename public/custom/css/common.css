@@ -1,0 +1,155 @@
+body {
+	font-size: 13px !important;
+	margin:0;
+	padding: 0;
+}
+.form-control{
+	/*background-color: red;*/
+}
+
+.portlet>.portlet-title>.caption {
+    font-size: 12px !important;
+
+}
+.portlet.light>.portlet-title>.caption>.caption-subject {
+    font-size: 12px !important;
+}
+/*masud*/
+.logo-default{
+	width: 150px !important;
+	margin-top: 20px !important;
+}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu > li.external{
+	background-color: #2D499A;
+}
+.portlet-body{
+	overflow: hidden;
+}
+.select2-selection--single{
+	/*border: 1px solid #c2cad8 !important;
+	width: 100% !important;
+	padding: 4px;
+	height: 33px !important;*/
+	border-color: #c2cad8 !important;
+	padding-bottom: 25px !important;
+}
+.side-padding-none{
+	padding-left: 0;
+	padding-right: 0;
+}
+#filter-form{
+	padding-top: 5px;
+}
+.background-gray{
+	background: gray !important;
+}
+/*.mt-element-step .step-thin .mt-step-number{
+	font-size: 15px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	}*/
+	.mt-element-step .step-thin .mt-step-title{
+		font-size: 15px;
+	}
+	.modal-backdrop{
+		display: none;
+	}
+	.table-scrollable .dataTable td > .btn-group, .table-scrollable .dataTable th > .btn-group{
+		position: relative !important;
+		z-index: 99999;
+	}
+	.modal-content{
+		margin-top: 120px !important;
+	}
+
+.input-group .btn{
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.table th, .table td{
+	font-size: 12px;
+	padding: 2px !important;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{
+	padding: 2px;
+}
+.portlet.light {
+	padding: 0px 6px 0px;
+}
+.portlet {
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+.table thead tr th {
+	font-size: 12px !important;
+	font-weight: bold;
+}
+.portlet > .portlet-title{
+	padding: 0;
+	margin-bottom: 0px;
+	max-height: 50px;
+	min-height: 20px;
+}
+
+.portlet > .portlet-title > .actions {
+	padding: 3px 3px;
+}
+.page-content-wrapper .page-content {
+	margin-left: 240px !important;
+	padding: 0px 0 0 20px !important;
+}
+.page-header-fixed .page-container {
+	margin-top: 50px;
+}
+
+.portlet > .portlet-title > .actions > .btn-group > .btn.btn-default, .portlet > .portlet-title > .actions > .btn-group > .btn.btn-sm.btn-default, .portlet > .portlet-title > .actions > .btn.btn-default, .portlet > .portlet-title > .actions > .btn.btn-sm.btn-default {
+	padding: 0px 7px;
+}
+
+
+element {
+
+}
+.uppercase {
+
+	text-transform: uppercase !important;
+
+}
+.bold {
+
+	font-weight: 600 !important;
+
+}
+a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+
+}
+* {
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+.portlet.box.grey-cascade > .portlet-title > .caption, .portlet.box.grey-cascade > .portlet-title > .caption > i {
+	color: #FFF;
+}
+.portlet > .portlet-title > .caption {
+	font-size: 12px !important;
+	line-height: 11px;
+}
+address {
+	margin-bottom: 2px;
+}
+/*.page-header.navbar .menu-toggler.sidebar-toggler {*/
+	/*margin: 12px 0 0;*/
+/*}*/
+
+.modal-open {
+	overflow: visible !important;
+
+}

@@ -1,0 +1,196 @@
+        <style>
+            @page {
+            margin-left: 2cm;
+                        margin-right: 2cm;
+                        margin-top: 2cm;
+                        margin-bottom: 2cm;
+                    }
+
+                    table {
+            page-break-inside: auto
+                    }
+
+                    tr {
+            page-break-inside: avoid;
+                        page-break-after: auto
+                    }
+
+                    .tbl {
+            border-collapse: collapse !important;
+                        width: 100%;
+                    }
+
+                    .tbl2 {
+            border-collapse: collapse !important;
+                        width: 50%;
+                    }
+
+                    table.tbl thead tr th, table.tbl2 thead tr th {
+            border: 1px solid #000;
+                        text-align: center !important;
+                        font-weight: normal;
+                    }
+
+                    table thead tr th,table tbody tr td, table tfoot tr td {
+            /*padding-left: 10px !important;*/
+            border: 1px solid #ccc;
+                        text-align: center !important;
+                        font-weight: normal;
+                        vertical-align: middle;
+                    }
+
+                    table.tbl thead tr th, table.tbl2 thead tr th {
+            text-align: center !important;
+                    }
+
+                    table.tbl td a {
+            text-decoration: none;
+                        color: #000000;
+                        background: none;
+                    }
+
+        </style>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>বাৎসরিক খাজনা পরিশোধের তথ্য | Dhaka WASA</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>খাজনা পরিশোধের সন</th>
+                    <th>স্থাপনার নাম</th>
+                    <th>জোন</th>
+                    <th>মৌজা</th>
+                    <th>দাগ নং</th>
+                    <th>খতিয়ান নং</th>
+                    <th>জমির পরিমান (একর)</th>
+                    <th>মোট খাজনার পরিমাণ</th>
+                </tr>
+            </thead>
+            <tbody>
+                                                <tr>
+                                    <td>1</td>
+                                    <td>2021</td>
+                                    <td>
+                                    উত্তর আগারগাঁওস্থ ওভারহেড ট্যাংক ও গভীর নলকূপ <hr>
+                                        ব্যবস্থাপনা পরিচালক, ঢাকা ওয়াসার বাংলো <hr>
+                                        জোয়ার সাহারা গভীর নলকূপ (খিলক্ষেত বাজার) <hr>
+                                        জোয়ার সাহারা গভীর নলকুপ (কুড়াতলী) <hr>
+                                        খিলক্ষেত গভীর নলকূপ (নামাপাড়া) <hr>
+                                        কুড়িল-শেওড়া গভীর নলকুপ (কুড়াতলী রোড সংলগ্ন) <hr>
+                                        মাজার রোড গভীর নলকুপ <hr>
+                                        দক্ষিনখান কাওলা উত্তর গভীর নলকুপ <hr>
+                                        দক্ষিনখান তালবাগানের উত্তর পাশে গভীর নলকুপ <hr>
+                                        দক্ষিনখান নগদাপাড়া গভীর নলকুপ <hr>
+                                        দক্ষিনখান মধ্যকাওলা গভীর নলকুপ <hr>
+                                                                                <b>-</b>
+                                    </td>
+                                    <td>
+                                    জোন-৪ <hr>
+                                        জোন-৫ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                        জোন-৯ <hr>
+                                                                                <b>-</b>
+                                    </td>
+                                    <td>
+                                        কাফরুল <hr>
+                                        গুলশান আ/এ <hr>
+                                        জোয়ার সাহারা <hr>
+                                        জোয়ার সাহারা <hr>
+                                        জোয়ার সাহারা <hr>
+                                        জোয়ার সাহারা <hr>
+                                        উত্তরা আ/এ <hr>
+                                        দক্ষিনখান <hr>
+                                        দক্ষিনখান <hr>
+                                        দক্ষিনখান <hr>
+                                        দক্ষিনখান <hr>
+                                                                                <b>-</b>
+                                    </td>
+                                    <td>
+                                        সিএস-৪৩৩,৪৩৪, আরএস-১৩৭৪,১৩৭৫,১৪৪৮, সিটি জরীপ-৭৫১২,৭৫১৩ <hr>
+                                        সিটি দাগ নং-২৫১৯-২৫২১ <hr>
+                                        সিএস দাগ নং-১৯৬৮, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-১৬৫৫, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-২৮৭৯, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-১৭৫০, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-৪৬, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-২৩৬০, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-৩৬২৯, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-২৭০৬, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                        সিএস দাগ নং-১৯৪১, আরএস দাগ নং-, সিটি জরীপ দাগ নং- <hr>
+                                                                                <b>-</b>
+                                    </td>
+                                    <td>
+                                        সিটি খতিয়ান নং-৯ <hr>
+                                        সিটি খতিয়ান নং-৯ <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                        সিটি জরীপ খতিয়ান নং- <hr>
+                                                                                <b>-</b>
+                                    </td>
+                                    <td>
+                                        ০.৩৬০০ <hr>
+                                        ১.৮৪৩০ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮২৫ <hr>
+                                        ০.০৮৬৬ <hr>
+                                                                                <span><b>পরিশোধিত মোট খাজনার পরিমাণ</b></span>
+                                    </td>
+                                    
+                                    <td>
+                                        ৩০৬০                                        <hr>
+                                        ১৫০০০                                        <hr>
+                                        ৫০০০                                        <hr>
+                                        ৩১৫                                        <hr>
+                                        ৩১৫                                        <hr>
+                                        ৩১৫                                        <hr>
+                                        ২৭০০                                        <hr>
+                                        ২৫৫০                                        <hr>
+                                        ২৫৫০                                        <hr>
+                                        ২৫৫০                                        <hr>
+                                        ২৫৫০                                        <hr>
+                                        
+                                        <b>৩৬৯০৫</b>
+                                                                            </td>
+                                </tr>
+                                             <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right"> <b>মোট : </b></td>
+                            <td><b>৩৬৯০৫</b></td>
+                        </tr>
+                              
+            </tbody>
+        </table>
+
+        <!--print block-->
+
+        

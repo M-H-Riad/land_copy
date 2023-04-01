@@ -1,0 +1,157 @@
+<style type="text/css">
+    @font-face {
+        font-family: bf;
+        src: url("sol.ttf");format("truetype");
+    }
+
+    body {
+        font-family: bf;
+        font-size: 18px;
+    }
+
+    p {
+        margin-bottom: 0;
+        margin-top: 0;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    table tr {
+        margin-top: 5px;
+    }
+
+    th {
+        padding: 5px;
+        border: 1px solid #0a0a0a;
+    }
+
+    td {
+        padding: 5px;
+        border: 1px solid #0a0a0a;
+    }
+</style>
+@if($namjari)
+    <div>
+        <h4 style="text-align: center;">খতিয়ান নং- {{$namjari->namjari_khotian_no or ''}}</h4>
+    </div>
+    <div class="col-md-12">
+        <table>
+            <tr>
+                <!-- <td class="col-md-2" style="border: none;">বিভাগ : ঢাকা</td> -->
+                <td class="col-md-2" style="border: none;">জেলা : ঢাকা</td>
+                <td class="col-md-2" style="border: none;">থানা : {{ $khajnaOfficeInfo->upazila->upazila_name or ''}}</td>
+                <td class="col-md-2" style="border: none;">মৌজা : {{ $khajnaOfficeInfo->mowza->mowja_name or ''}}</td>
+                <td class="col-md-2" style="border: none;">জে এল নং : {{ $namjari->namjari_jl_no or ''}}</td>
+                <td class="col-md-2" style="border: none;">রে: সা: নং: </td>
+            </tr>
+        </table>
+
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+        <tr>
+            <th>স্থাপনার নাম</th>
+            <td>{{$namjari->land->title or ''}}</td>
+        </tr>
+        <tr>
+            <th>নামজারি স্টেটাস</th>
+            <td>
+                @if($namjari->status == 0)
+                    Inactive
+                @elseif($namjari->status == 1)
+                    Active
+                @else
+                    N/A
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <th>জমির শ্রেণী</th>
+            <td>
+                @if($namjari->jomir_sreny == 0)
+                    কৃষি
+                @elseif($namjari->jomir_sreny == 1)
+                    অকৃষি ( {{$namjari->jomir_sreny_details or 'Null'}} )
+                @else
+                    N/A
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <th>নামজারি তারিখ</th>
+            <td>{{$namjari->namjari_date or ''}}</td>
+        </tr>
+        <tr>
+            <th>প্রাপ্তির তারিখ</th>
+            <td>{{$namjari->purchase_date or ''}}</td>
+        </tr>
+        <tr>
+            <th>নামজারির খতিয়ান নং</th>
+            <td>{{$namjari->namjari_khotian_no or ''}}</td>
+        </tr>
+        <tr>
+            <th>নামজারির পর প্রাপ্ত খতিয়ান নং</th>
+            <td>{{$namjari->namjarir_pore_khotian_no or ''}}</td>
+        </tr>
+        <tr>
+            <th>নামজারিকৃত দাগ নং</th>
+            <td>{{$namjari->namjarir_dag_no or ''}}</td>
+        </tr>
+        <tr>
+            <th>ওই দাগে মোট জমির পরিমান</th>
+            <td>{{$namjari->oi_dage_mot_jomi or ''}}
+                @if($namjari->jomir_unit == 1)
+                    শতাংশ
+                @elseif($namjari->jomir_unit == 2)
+                    অযুতাংশ
+                @elseif($namjari->jomir_unit == 3)
+                    একর 
+                @elseif($namjari->jomir_unit == 4)
+                    কাঠা
+                @elseif($namjari->jomir_unit == 5)
+                    বিঘা
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <th>দাগের মধ্যে অত্র খতিয়ানের অংশ</th>
+            <td>{{$namjari->dager_moddhe_khotianer_ongsho or ''}}</td>
+        </tr>
+        <tr>
+            <th>অংশ অনুযায়ীই জমির পরিমান</th>
+            <td>{{$namjari->ongsho_onujaie__jomir_poriman or ''}}
+                @if($namjari->ongsho_onujaie_jomir_akok == 1)
+                    শতাংশ
+                @elseif($namjari->ongsho_onujaie_jomir_akok == 2)
+                    অযুতাংশ
+                @elseif($namjari->ongsho_onujaie_jomir_akok == 3)
+                    একর 
+                @elseif($namjari->ongsho_onujaie_jomir_akok == 4)
+                    কাঠা
+                @elseif($namjari->ongsho_onujaie_jomir_akok == 5)
+                    বিঘা
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <th>নামজারির জোত নং</th>
+            <td>{{$namjari->namjari_jot_no or ''}}</td>
+        </tr>
+        <tr>
+            <th>নামজারির জে এল নং</th>
+            <td>{{$namjari->namjari_jl_no or ''}}</td>
+        </tr>
+        <tr>
+            <th>মন্তব্য</th>
+            <td>{{$namjari->note or ''}}</td>
+        </tr>
+        </thead>
+    </table>
+@endif
