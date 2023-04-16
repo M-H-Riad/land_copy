@@ -8,7 +8,7 @@ use App\Modules\Land\Models\Land;
 use App\Modules\Land\Models\Zila;
 use App\Modules\Land\Models\Thana;
 use App\Modules\Land\Models\LandSource;
-use App\Modules\Land\Models\Property;
+use App\Modules\Land\Models\Property; 
 use App\Modules\Land\Models\Zone;
 use Excel;
 use File;

@@ -1,5 +1,6 @@
 @extends('main_layouts.app')
 
+
 @section('content')
     <div class="row animated zoomIn">
         @include('errorOrSuccess')

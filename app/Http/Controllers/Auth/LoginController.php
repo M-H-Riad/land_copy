@@ -59,11 +59,12 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, User $user){
-   //put your thing in here
+        //put your thing in here
         \App\Library\AuditTrailLib::addTrail('Login',Auth::user()->user_name,'Login successfully','success');
         /**
          * Check user Status is active or not
          */
+      
         if(Auth::user()->status == 0){
             Auth()->logout();
             return redirect('/login')->withInput()->withErrors('Your access is disabled! Please contact your system admin.');

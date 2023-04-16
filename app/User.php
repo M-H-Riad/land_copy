@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'user_name', 'employee_id'
+        'full_name','full_name_ban','email', 'password', 'user_name', 'employee_id','pf_no','office_id','department_id','designation_id','phone'
     ];
 
     /**
@@ -40,6 +40,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Modules\User\Models\RoleUser', 'user_id');
     }
+
 
     /**
      * A user can be belongs to a Stakeholder except the System User

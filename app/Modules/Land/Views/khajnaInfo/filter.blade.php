@@ -4,6 +4,7 @@
             <span class="caption-subject bold uppercase">Filter</span>
         </div>
     </div>
+
     <div class="portlet-body" style="padding: 10px">
         {{Form::model($_REQUEST,['method'=>'get','form-horizontal','role'=>'form'])}}
         <div class="col-md-12 side-padding-none">

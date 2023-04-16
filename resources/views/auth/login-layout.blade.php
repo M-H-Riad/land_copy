@@ -101,13 +101,16 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
             </div>
+            @if(session('success_new'))
+                    <p class="alert alert-success">{{ session('success_new') }}</p>
+            @endif
             {{-- <h3 class="form-title">Login to your account</h3> --}}
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
                  <span> Enter any username and password. </span>
             </div>
             @include('errorOrSuccess')
-            @if (session('status'))
+            @if(session('status'))
                 <p class="alert alert-success">{{ session('status') }}</p>
             @endif
             <div class="form-group {{ $errors->has('user_name') ? ' has-error' : '' }}">

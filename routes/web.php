@@ -52,7 +52,9 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
 
-Auth::routes();
+Auth::Routes();
+
+
 
 Route::group(['middleware' => ['auth', 'auditTrails']], function () {
     Route::get('/home', 'HomeController@index')->name('home');

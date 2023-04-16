@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
+use DB;
+use App\Mail\UserRegistration;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
 
@@ -219,47 +223,47 @@ class UserController extends Controller {
 
     public function register_create(Request $request)
     {
-
         $this->validate($request, [
-            'name'      => 'required|string|max:255',
+            'department_id' => 'required',
+            'phone' => 'required',
+            'designation_id' => 'required',
             'email'     => 'required|string|email|max:255|unique:users',
-            'password'  => 'required|string|min:6|confirmed',
+            'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            
         ]);
-
+  
         $data = [
-            'name'          => $request['name'],
-            'email'         => $request['email'],
+            'full_name' => $request['first_name'].' '.$request['last_name'],
+            'full_name_ban' => $request['first_name_ban'].' '.$request['last_name_ban'],
+            'pf_no' => $request['pf_no'],
+            'office_id' => $request['office_id'],
+            'department_id' => $request['department_id'],
+            'phone' => $request['phone'],
+            'designation_id' => $request['designation_id'],
+            'email'     => $request['email'],
             'user_name' => explode('@',$request['email'])[0],
             'password'      => bcrypt($request['password']),
         ];
 
-
-
-        //print_r($data);die;
-
-        $user = User::create($data);
+        $id=user::create($data)->id;
+        $data['id']=$id;
+        //Mail send to user---------
+        Mail::to($request['email'])->send(new UserRegistration($data));
 
         Session::flash('success','Successfully added');
         return redirect()->route('user-list');
-
-/*
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'user_name' => explode('@',$data['email'])[0],
-            'password' => bcrypt($data['password']),
-        ]);*/
     }
 
 
     public function register(Request $request)
     {
 
-        //echo "sdfs";die;
 
+        $departments = DB::table('departments')->get();
+        $designations = DB::table('designations')->get();
 
+        return view('User::register.register',['departments' => $departments,'designations'=>$designations]);
 
-        return view('User::register.register');
         //return view('Land::zone.index', compact('zones'));
 
         /*$this->validate($request, [
@@ -320,6 +324,51 @@ public function change_password(Request $request){
         \App\Library\AuditTrailLib::addTrail('User',Auth::user()->user_name,'Change Password -  not done','Failed');
         return redirect()->back()->withErrors('Password change failed.');
     }
-}
+ }
 
+   public function user_activation($id){
+        $data=User::find($id);
+
+        $startTime = Carbon::parse($data->created_at);
+        $endTime = Carbon::parse(now());
+        $totalDuration = $endTime->diffInMinutes($startTime);
+       
+        if($totalDuration > 30){
+            $datas['error']='Your 30 minutes time exceed. You have to activated your account within 30 minutes';
+            return view('emails.userRegistration',compact('datas'));
+        }
+        else
+        {
+            $user            = User::findOrFail($id);
+            $user->status     = 1;
+            $user->save();
+
+            $data_new['success']='Congratulatons, Your account is activated!';
+
+            return view('emails.userRegistration',compact('data_new'));
+        }
+        
+   }
+
+   public function showResetForm($token){
+   
+         $user=User::where('remember_token',$token)->first();
+
+        return view('auth.passwords.reset')->with(
+            ['email' => $user->email]
+        );
+   }
+
+   public function userPasswordUpdate(Request $request){
+        $this->validate($request, [
+            "password" => "required|confirmed",
+            "password_confirmation" => "required|same:password"
+        ]);
+
+        $password = Hash::make($request->password);
+
+        User::where('email',$request->email)->update(['password'=>$password]);
+
+        return redirect('/login')->with('success_new','We have e-mailed your password reset link!');
+   }
 }

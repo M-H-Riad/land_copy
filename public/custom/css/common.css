@@ -153,3 +153,6 @@ address {
 	overflow: visible !important;
 
 }
+.action_buttons_style{
+    display: flex;
+}

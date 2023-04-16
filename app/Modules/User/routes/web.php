@@ -1,6 +1,10 @@
 <?php
 
+Route::group(['module' => 'User','namespace' => 'App\Modules\User\Controllers'], function() {
+    Route::get('passwords/reset/{token}', ['as' => 'password_reset', 'uses' => 'UserController@showResetForm']);
+    Route::post('password/update', ['as' => 'password_update', 'uses' => 'UserController@userPasswordUpdate']);
 
+});
 Route::group(['module' => 'User', 'middleware' => ['web', 'auth','auditTrails','permission:manage_role'], 'namespace' => 'App\Modules\User\Controllers'], function() {
     Route::resource('permission', 'PermissionController');
     Route::resource('role', 'RoleController');
@@ -22,6 +26,7 @@ Route::group(['module' => 'User', 'middleware' => ['web', 'auth','auditTrails'],
 
     Route::get('register', ['as' => 'register', 'uses' => 'UserController@register']);
     Route::post('register-create', ['as' => 'register-create', 'uses' => 'UserController@register_create']);
+    Route::get('user-activation/{id}', ['as' => 'user_activation', 'uses' => 'UserController@user_activation']);
 });
 
 

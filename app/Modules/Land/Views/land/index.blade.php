@@ -4,7 +4,7 @@
     <div class="row animated zoomIn">
         @include('errorOrSuccess')
 
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             @include('Land::land.filter')
         </div>
         <div class="col-md-12">

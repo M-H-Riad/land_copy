@@ -1033,6 +1033,31 @@
                         <span class="title">খতিয়ান নং অনুযায়ী নামজারি তথ্য</span>
                     </a>
                 </li>
+
+                <!-- Start DeepTubewell -->
+
+                <li class="heading">
+                    <h3 class="uppercase">Deep Tubewell</h3>
+                </li>
+                <li class="nav-item deep_tubewell">
+                    <a href="{{ URL::to('/deep-tubewell/source-type') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">উৎসের ধরণ</span>
+                    </a>
+                </li>
+                <li class="nav-item deep_tubewell">
+                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">ডিপ টিউবওয়েল</span>
+                    </a>
+                </li>
+                <li class="nav-item deep_tubewell">
+                    <a href="{{ URL::to('/deep-tubewell/log-report') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">লগ রিপোর্ট</span>
+                    </a>
+                </li>
+                <!-- End DeepTubewell -->
             @endif
 
             @if(Auth::user()->hasRole('superadmin') and Auth::user()->user_name == 'sslrnd')

@@ -19,7 +19,8 @@
     {{--integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">--}}
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
-
+    <link href="{{ URL::asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+  
 </head>
 <body>
 <div id="app">
@@ -90,9 +91,16 @@
 </div>
 
 
-<!-- Scripts -->
 
 <script src="{{ asset('js/app.js') }}"></script>
-
+<script src="{{ URL::asset('assets/global/plugins/select2/js/select2.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(".select2").select2();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 </body>
 </html>
