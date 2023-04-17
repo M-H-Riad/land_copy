@@ -3,8 +3,7 @@
 namespace App\Modules\DeepTubewell\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\AuditTrails;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\User;
 
 class LogInfo extends Model
 {
@@ -12,4 +11,9 @@ class LogInfo extends Model
     protected $table = 'log_info';
     protected $fillable = ['id','user_id','module_name','menu_name','operation'];
     
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
 }
