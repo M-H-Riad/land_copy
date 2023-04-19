@@ -23,7 +23,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="portlet-body">
+                <div class="portlet-body"> 
                     <table class="table table-striped table-bordered table-hover nopagination dt-responsive" >
                         <thead>
                         <tr>
@@ -52,7 +52,7 @@
                                     <td>{{$deepTubewell->zone->title}}</td>
                                     <td>{{$deepTubewell->area->title}}</td>
                                     <td>{{$deepTubewell->sourceType->title}}</td>
-                                    <td>{{$deepTubewell->source}}</td>
+                                    <td>{{$deepTubewell->sources->title}}</td>
                                     <td>
                                         @if($deepTubewell->onumoti_chukti_boraddo==1)
                                             {{ অনুমতি }}

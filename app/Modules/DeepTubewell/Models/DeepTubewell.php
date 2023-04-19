@@ -35,5 +35,10 @@ class DeepTubewell extends Model
     {
         return $this->belongsTo('App\Modules\DeepTubewell\Models\DeepTubewellSourceType', 'source_type', 'id');
     }
+
+    public function sources()
+    {
+        return $this->belongsTo('App\Modules\DeepTubewell\Models\DeepTubewellSource', 'source', 'id');
+    }
     
 }

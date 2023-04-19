@@ -94,7 +94,7 @@ class AreaController extends Controller
             'status'    => 1
         ];
 
-        try {
+        try { 
             Area::create($data);
             // return redirect()->back()->with('success', 'Land Area added successfully');
         } catch (\Exception $ex) {

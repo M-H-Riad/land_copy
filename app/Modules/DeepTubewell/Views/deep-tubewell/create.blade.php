@@ -8,7 +8,7 @@
         gap:5px;
     }
     #search_view{
-        display: block;
+        display: block; 
         border: 1px solid #ccc;
         margin-top: 5px;
         padding: 5px;
@@ -29,7 +29,7 @@
               <i class="icon-settings font-red-sunglo"></i>
               <span class="caption-subject bold uppercase">গভীর নলকূপের তথ্য</span>
           </div>
-      </div>
+      </div> 
  
       <div class="portlet-body">
         {{Form::open(['url'=>'deep-tubewell/deep-tubewell','method'=>'post','class'=>"form-horizontal",'role'=>'form', 'enctype' => 'multipart/form-data'])}}
@@ -67,7 +67,7 @@
                 </select>
               </div>
               <div class="col-md-2">
-                  <button data-toggle="modal" data-target="#add-land_area-modal" type="button" class="btn btn-success bnt-lg"><i class="fa fa-plus"></i> Add New</button>
+                  <button data-toggle="modal" data-target="#deep_tubewell_source_type" type="button" class="btn btn-success bnt-lg"><i class="fa fa-plus"></i> Add New</button>
               </div>
           </div>
           <div class="form-group col-md-12">
@@ -166,26 +166,37 @@
           </div>  
 
           <div class="form-group col-md-12">
-             <label for="area_id" class="col-md-3 control-label">গন্তব্য<span style="color:red">*</span></label>
+             <label for="area_id" class="col-md-3 control-label">অন্যান্য<span style="color:red">*</span></label>
             <div class="col-md-5">
+                    <div>
+                         <div class="col-md-6" style="margin-top: 5px;text-decoration:underline;">সংযুক্তির নাম</div>
+                         <div class="col-md-6" style="margin-top: 5px;text-decoration:underline;">সংযুক্তি</div>
+                    </div>
+                   
                 <div id="wrapperfee">
                     <a type="button" class="addmorefee"> + Add more </a>
+                    
                     <div class="morefeecol multifield_content">
-                        {{ Form::file('document[]', null, ['class' => '']) }}
-                        <button type="button" class="btn btn-sm btn-outline-danger btnRemove">
+                        <div class="col-md-5" style="margin-top: 5px;">
+                            {{ Form::text('document_name[]', null, ['class' => 'form-control', 'placeholder' => 'Document Name']) }} 
+                            <!-- doc_name_2 -->
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                            {{ Form::file('document[]', null, ['class' => '']) }}
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                        <button style="margin-left: 80px;" type="button" class="btn btn-sm btn-outline-danger btnRemove">
                             <i class="fa fa-trash"></i>
                         </button>
+                        </div>
+                        
                     </div>
                     
 
                     
                 </div>
             </div>
-          </div>  
-
-          <div class="form-group col-md-12">
-              <label for="area_id" class="col-md-3 control-label">অন্যান্য<span style="color:red">*</span></label>
-          </div>  
+          </div>    
 
 
 
@@ -234,7 +245,8 @@
 </div>
 
 
-
+@include('DeepTubewell::deep-tubewell.add_source_type')
+@include('Land::land.area-create')
 
 
 
@@ -282,6 +294,8 @@
                     $('#search_view').html(html);
                     if(html!=''){
                         $('#search_view').show();
+                    }else{
+                        $('#search_view').hide();
                     }
                     
                    }
@@ -298,6 +312,54 @@
              $('#source_id').val(id);
              $('#search_view').hide();
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('select[name="zone_id"]').on('change', function() {
+            var zoneID = $(this).val();
+            var url = '{{ url("land/getareas/")}}/' + zoneID;
+            if(zoneID) {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="area_id"]').empty();
+                        $('select[name="area_id"]').append('<option value="">Select Area</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="area_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                });
+            }else{
+                $('select[name="city"]').empty();
+            }
+        });
+
+        // $('select[name="zila_id"]').on('change', function() {
+        //     var zilaID = $(this).val();
+        //     console.log(zilaID);
+        //     var url = '{{ url("land/getthanas/")}}/' + zilaID;
+        //     if(zilaID > 0) {
+        //         $.ajax({
+        //             url: url,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success:function(data) {
+        //                 $('select[name="thana_id"]').empty();
+        //                 $('select[name="thana_id"]').append('<option value="">Select Thana</option>');
+        //                 $.each(data, function(key, value) {
+        //                     $('select[name="thana_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+        //                 });
+        //             }
+        //         });
+        //     }else{
+        //       $('select[name="thana_id"]').empty();
+        //       $('select[name="thana_id"]').append('<option value="">Select Thana</option>');
+        //     }
+        // });
     });
 </script>
 @endsection

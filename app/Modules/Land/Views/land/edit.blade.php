@@ -39,7 +39,7 @@
                 {!! Form::select('zone_id', $zones, $land->zone_id, ['class' => 'form-control select2','placeholder' => 'Select Land Zone', 'style' => 'width:100%']) !!}
               </div>
           </div>
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-12"> 
               <label for="area_id" class="col-md-3 control-label">মৌজা<span style="color:red">*</span></label>
               <div class="col-md-5">
                 {!! Form::select('area_id', $areas, $land->area_id, ['class' => 'form-control select2','placeholder' => 'Select Land Area', 'style' => 'width:100%']) !!}
