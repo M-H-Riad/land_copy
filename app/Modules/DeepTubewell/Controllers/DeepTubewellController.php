@@ -86,7 +86,7 @@ class DeepTubewellController extends Controller
             'destination'                         => $request->destination,
         ];
         // echo "<pre>";print_r($data);die();
-        
+
         $chk_log = LogDetailsStore(Auth::user()->id,'deep-tubewell','deep-tubewell',1);//1=Insert,2=Update,3=Delete.
       
         try {

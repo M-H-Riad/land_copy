@@ -9,6 +9,7 @@ use App\Modules\Land\Models\KhajnaOfficeInfo;
 use App\Modules\Land\Models\Land;
 use App\Modules\Land\Models\Mowja;
 use App\Modules\Land\Models\Upazila;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Mpdf\Config\ConfigVariables;
 use Mpdf\Config\FontVariables;
@@ -72,8 +73,26 @@ class KhajnaOfficeInfoController extends Controller
             'to_year'               => $request->to_year,
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'khajna_office';
+        $log_info['operation']   = 1;
+        $log_info['khajna_office_info_land_id'] = $request->land_id;
+        $log_info['khajna_office_info_upazila_id']  = 0;
+        $log_info['khajna_office_info_mowja_id']    = 0;
+        $log_info['khajna_office_info_khajna_office_id']     = $request->khajna_office_id;
+        $log_info['khajna_office_info_open_year']     = $request->open_year;
+        $log_info['khajna_office_info_total_bokeya']     = $request->total_bokeya;
+        $log_info['khajna_office_info_from_year']     = $request->from_year;
+        $log_info['khajna_office_info_to_year']     = $request->to_year;
+        $log_info['khajna_office_info_status']     =1;
+        $log_info['khajna_office_info_created_by']  = Auth::user()->id;
+        
         try {
-            KhajnaOfficeInfo::create($data);
+            $id=KhajnaOfficeInfo::create($data)->id;
+            $log_info['khajna_office_info_id'] = $id;
+            LogDetailsStore($log_info);
             return redirect('land/khajna-office/')->with('success', 'Khajna Office info added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -137,8 +156,26 @@ class KhajnaOfficeInfoController extends Controller
             'to_year'               => $request->to_year,
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'khajna_office';
+        $log_info['operation']   =  2;
+        $log_info['khajna_office_info_land_id'] = $request->land_id;
+        $log_info['khajna_office_info_upazila_id']  = 0;
+        $log_info['khajna_office_info_mowja_id']    = 0;
+        $log_info['khajna_office_info_khajna_office_id']     = $request->khajna_office_id;
+        $log_info['khajna_office_info_open_year']     = $request->open_year;
+        $log_info['khajna_office_info_total_bokeya']     = $request->total_bokeya;
+        $log_info['khajna_office_info_from_year']     = $request->from_year;
+        $log_info['khajna_office_info_to_year']     = $request->to_year;
+        $log_info['khajna_office_info_status']     =1;
+        $log_info['khajna_office_info_updated_by']  = Auth::user()->id;
+
         try {
             KhajnaOfficeInfo::where('id', $id)->update($data);
+            $log_info['khajna_office_info_id'] = $id;
+            LogDetailsStore($log_info);
             return redirect('land/khajna-office/')->with('success', 'Khajna Office info updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -157,7 +194,26 @@ class KhajnaOfficeInfoController extends Controller
         $khajna = KhajnaOfficeInfo::where('id',$id)->first();
 
         if($khajna) {
+             //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'khajna_office';
+            $log_info['operation']   =  3;
+            $log_info['khajna_office_info_land_id'] = $khajna->land_id;
+            $log_info['khajna_office_info_upazila_id']  = 0;
+            $log_info['khajna_office_info_mowja_id']    = 0;
+            $log_info['khajna_office_info_khajna_office_id']     = $khajna->khajna_office_id;
+            $log_info['khajna_office_info_open_year']     = $khajna->open_year;
+            $log_info['khajna_office_info_total_bokeya']     = $khajna->total_bokeya;
+            $log_info['khajna_office_info_from_year']     = $khajna->from_year;
+            $log_info['khajna_office_info_to_year']     = $khajna->to_year;
+            $log_info['khajna_office_info_status']     =1;
+            $log_info['khajna_office_info_updated_by']  = Auth::user()->id;
+            $log_info['khajna_office_info_id'] = $id;
+           
             $khajna->delete();
+            
+            LogDetailsStore($log_info);
             return redirect()->back()->with('success', 'Khajna Office Info Successfully Deleted');
         } else {
             return redirect()->back()->withErrors('No Data Found');

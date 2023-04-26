@@ -8,6 +8,7 @@ use App\Modules\Land\Models\Thana;
 use App\Modules\Land\Models\Land;
 use App\Modules\Land\Models\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Validation\Rule;
@@ -66,8 +67,21 @@ class ThanaController extends Controller
             'status'    => 1
         ];
 
+         //log Info---------
+         $log_info['user_id']     = Auth::user()->id;
+         $log_info['module_name'] = 'land';
+         $log_info['menu_name']   = 'thana';
+         $log_info['operation']   = 1;
+         $log_info['thana_title']  = $request->title;
+         $log_info['thana_zila_id'] = $request->zila_id;
+         $log_info['thana_status'] = 1;
+         $log_info['thana_created_by'] = Auth::user()->id;
+
         try {
-            Thana::create($data);
+            $id=Thana::create($data)->id;
+            $log_info['thana_id']   = $id;
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'Thana added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -158,9 +172,21 @@ class ThanaController extends Controller
             'zila_id'   => $request->zila_id,
             'status'    => $request->status
         ];
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'thana';
+        $log_info['operation']   = 2;
+        $log_info['thana_title']  = $request->title;
+        $log_info['thana_zila_id'] = $request->zila_id;
+        $log_info['thana_status'] = $request->status;
+        $log_info['thana_updated_by'] = Auth::user()->id;
+        $log_info['thana_id']   = $id;
+      
 
         try {
             Thana::where('id', $id)->update($data);
+            LogDetailsStore($log_info);
             return redirect()->back()->with('success', 'Thana updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -180,7 +206,21 @@ class ThanaController extends Controller
             // if( Land::where('thana_id',$id)->exists()){
             //     return redirect()->back()->withErrors("Sorry, You can not delete this Zila");
             // }
+            $thana=Thana::find($id);
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'thana';
+            $log_info['operation']   = 3;
+            $log_info['thana_title']  = $thana->title;
+            $log_info['thana_zila_id'] = $thana->zila_id;
+            $log_info['thana_status'] = $thana->status;
+            $log_info['thana_created_by'] = Auth::user()->id;
+            $log_info['thana_id']   = $id;
+
             Thana::where('id', $id)->delete();
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', "Thana successfully deleted");
         } else {
             return redirect()->back()->withErrors("No Data Found");

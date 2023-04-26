@@ -11,6 +11,7 @@ use App\Modules\Land\Models\Zila;
 use App\Modules\Land\Models\Thana;
 use App\Modules\Land\Models\Area;
 use App\Modules\Land\Models\Namjari;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Mpdf\Config\ConfigVariables;
 use Mpdf\Config\FontVariables;
@@ -85,8 +86,38 @@ class NamjariController extends Controller
             'note'                         => $request->note
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'namjari';
+        $log_info['operation']   = 1;
+        $log_info['namjaris_land_id']    = $request->land_id;
+        $log_info['namjaris_mowja_id']   = $request->mowja_id;
+        $log_info['namjaris_zone_id']    = $request->zone_id;
+        $log_info['namjaris_status']     = $request->status;
+        $log_info['namjaris_jomir_sreny']      =$request->jomir_sreny;
+        $log_info['namjaris_jomir_sreny_details'] = $request->jomir_sreny_details;
+        $log_info['namjaris_namjari_date'] = $request->namjari_date;
+        $log_info['namjaris_purchase_date'] = $request->purchase_date;
+        $log_info['namjari_khotian_no'] = $request->namjari_khotian_no;
+        $log_info['namjarir_pore_khotian_no'] = 0;
+        $log_info['namjarir_dag_no'] =$request->namjarir_dag_no;
+        $log_info['oi_dage_mot_jomi'] =$request->oi_dage_mot_jomi;
+        $log_info['jomir_unit'] = $request->jomir_unit;
+        $log_info['namjari_jot_no'] = $request->namjari_jot_no;
+        $log_info['namjari_jl_no'] = $request->namjari_jl_no;
+        $log_info['dager_moddhe_khotianer_ongsho'] = $request->dager_moddhe_khotianer_ongsho;
+        $log_info['ongsho_onujaie_jomir_poriman'] = $request->ongsho_onujaie__jomir_poriman;
+        $log_info['ongsho_onujaie_jomir_akok'] = $request->ongsho_onujaie_jomir_akok;
+        $log_info['namjaris_note'] = $request->note;
+        $log_info['namjaris_created_by'] = Auth::user()->id;
+
+        
         try {
-            Namjari::create($data);
+            $id=Namjari::create($data)->id;
+            $log_info['namjaris_id'] = $id;
+            LogDetailsStore($log_info);
+
             return redirect('land/namjari/')->with('success', 'Namjari added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -163,6 +194,31 @@ class NamjariController extends Controller
                 'namjari_jl_no'                => $request->namjari_jl_no,
                 'note'                         => $request->note
             ];
+                //log Info---------
+                $log_info['user_id']     = Auth::user()->id;
+                $log_info['module_name'] = 'land';
+                $log_info['menu_name']   = 'namjari';
+                $log_info['operation']   = 2;
+                $log_info['namjaris_land_id']    = $request->land_id;
+                $log_info['namjaris_mowja_id']   = $request->mowja_id;
+                $log_info['namjaris_zone_id']    = $request->zone_id;
+                $log_info['namjaris_status']     = $request->status;
+                $log_info['namjaris_jomir_sreny']      =$request->jomir_sreny;
+                $log_info['namjaris_jomir_sreny_details'] = $request->jomir_sreny_details;
+                $log_info['namjaris_namjari_date'] = $request->namjari_date;
+                $log_info['namjaris_purchase_date'] = $request->purchase_date;
+                $log_info['namjari_khotian_no'] = $request->namjari_khotian_no;
+                $log_info['namjarir_pore_khotian_no'] = 0;
+                $log_info['namjarir_dag_no'] =$request->namjarir_dag_no;
+                $log_info['oi_dage_mot_jomi'] =$request->oi_dage_mot_jomi;
+                $log_info['jomir_unit'] = $request->jomir_unit;
+                $log_info['namjari_jot_no'] = $request->namjari_jot_no;
+                $log_info['namjari_jl_no'] = $request->namjari_jl_no;
+                $log_info['dager_moddhe_khotianer_ongsho'] = $request->dager_moddhe_khotianer_ongsho;
+                $log_info['ongsho_onujaie_jomir_poriman'] = $request->ongsho_onujaie__jomir_poriman;
+                $log_info['ongsho_onujaie_jomir_akok'] = $request->ongsho_onujaie_jomir_akok;
+                $log_info['namjaris_note'] = $request->note;
+                $log_info['namjaris_updated_by'] = Auth::user()->id;
         }else{
             $data = [
                 'land_id'                      => $request->land_id,
@@ -184,10 +240,37 @@ class NamjariController extends Controller
                 'namjari_jl_no'                => null,
                 'note'                         => null
             ];
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'namjari';
+            $log_info['operation']   = 2;
+            $log_info['namjaris_land_id']    = $request->land_id;
+            $log_info['namjaris_mowja_id']   = $request->mowja_id;
+            $log_info['namjaris_zone_id']    = $request->zone_id;
+            $log_info['namjaris_status']     = $request->status;
+            $log_info['namjaris_jomir_sreny']      =null;
+            $log_info['namjaris_jomir_sreny_details'] =null;
+            $log_info['namjaris_namjari_date'] = null;
+            $log_info['namjaris_purchase_date'] = null;
+            $log_info['namjari_khotian_no'] = null;
+            $log_info['namjarir_pore_khotian_no'] = null;
+            $log_info['namjarir_dag_no'] =null;
+            $log_info['oi_dage_mot_jomi'] =null;
+            $log_info['jomir_unit'] = null;
+            $log_info['namjari_jot_no'] = null;
+            $log_info['namjari_jl_no'] = null;
+            $log_info['dager_moddhe_khotianer_ongsho'] =null;
+            $log_info['ongsho_onujaie_jomir_poriman'] = null;
+            $log_info['ongsho_onujaie_jomir_akok'] =null;
+            $log_info['namjaris_note'] = null;
+            $log_info['namjaris_updated_by'] =null;
         }
 
         try {
             Namjari::where('id', $id)->update($data);
+            $log_info['namjaris_id'] = $id;
+            LogDetailsStore($log_info);
             return redirect('land/namjari/')->with('success', 'Namjari updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -203,8 +286,38 @@ class NamjariController extends Controller
      */
     public function destroy(Namjari $namjari)
     {
+
         if($namjari) {
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'namjari';
+            $log_info['operation']   = 3;
+            $log_info['namjaris_land_id']    = $namjari->land_id;
+            $log_info['namjaris_mowja_id']   = $namjari->mowja_id;
+            $log_info['namjaris_zone_id']    = $namjari->zone_id;
+            $log_info['namjaris_status']     = $namjari->status;
+            $log_info['namjaris_jomir_sreny']      =$namjari->jomir_sreny;
+            $log_info['namjaris_jomir_sreny_details'] = $namjari->jomir_sreny_details;
+            $log_info['namjaris_namjari_date'] = $namjari->namjari_date;
+            $log_info['namjaris_purchase_date'] = $namjari->purchase_date;
+            $log_info['namjari_khotian_no'] = $namjari->namjari_khotian_no;
+            $log_info['namjarir_pore_khotian_no'] = 0;
+            $log_info['namjarir_dag_no'] =$namjari->namjarir_dag_no;
+            $log_info['oi_dage_mot_jomi'] =$namjari->oi_dage_mot_jomi;
+            $log_info['jomir_unit'] = $namjari->jomir_unit;
+            $log_info['namjari_jot_no'] = $namjari->namjari_jot_no;
+            $log_info['namjari_jl_no'] = $namjari->namjari_jl_no;
+            $log_info['dager_moddhe_khotianer_ongsho'] = $namjari->dager_moddhe_khotianer_ongsho;
+            $log_info['ongsho_onujaie_jomir_poriman'] = $namjari->ongsho_onujaie__jomir_poriman;
+            $log_info['ongsho_onujaie_jomir_akok'] = $namjari->ongsho_onujaie_jomir_akok;
+            $log_info['namjaris_note'] = $namjari->note;
+            $log_info['namjaris_deleted_by'] = Auth::user()->id;
+            $log_info['namjaris_id'] = $namjari->id;
+
             $namjari->delete();
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'namjari Successfully Deleted');
         } else {
             return redirect()->back()->withErrors('No Data Found');

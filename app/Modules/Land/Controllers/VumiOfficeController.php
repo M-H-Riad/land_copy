@@ -5,6 +5,7 @@ namespace App\Modules\Land\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Modules\Land\Models\VumiOffice;
+use Illuminate\Support\Facades\Auth;
 use Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Mpdf\Config\ConfigVariables;
@@ -51,8 +52,23 @@ class VumiOfficeController extends Controller
             'address'         => $request->address
         ];
         
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'vumi_office';
+        $log_info['operation']   = 1;
+        $log_info['vumi_office_office_name'] = $request->office_name;
+        $log_info['vumi_office_upazila_id']  = 0;
+        $log_info['vumi_office_mowja_id']    = 0;
+        $log_info['vumi_office_address']     = $request->address;
+        $log_info['vumi_office_status']      = 1;
+        $log_info['vumi_office_created_by']  = Auth::user()->id;
+        
         try {
-            VumiOffice::create($data);
+            $id=VumiOffice::create($data)->id;
+            $log_info['vumi_office_id'] = $id;
+            LogDetailsStore($log_info);
+
             return redirect('land/vumi_office/')->with('success', 'Vumi Office added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -103,8 +119,23 @@ class VumiOfficeController extends Controller
             'address'         => $request->address
         ];
         
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'vumi_office';
+        $log_info['operation']   = 2;
+        $log_info['vumi_office_office_name'] = $request->office_name;
+        $log_info['vumi_office_upazila_id']  = 0;
+        $log_info['vumi_office_mowja_id']    = 0;
+        $log_info['vumi_office_address']     = $request->address;
+        $log_info['vumi_office_status']      = 1;
+        $log_info['vumi_office_updated_by']  = Auth::user()->id;
+        $log_info['vumi_office_id'] = $id;
+            
         try {
             VumiOffice::where('id', $id)->update($data);
+            LogDetailsStore($log_info);
+
             return redirect('land/vumi_office/')->with('success', 'Vumi Office added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -121,7 +152,22 @@ class VumiOfficeController extends Controller
     public function destroy(VumiOffice $vumiOffice)
     {
         if($vumiOffice) {
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'vumi_office';
+            $log_info['operation']   =  3;
+            $log_info['vumi_office_office_name'] = $vumiOffice->office_name;
+            $log_info['vumi_office_upazila_id']  = 0;
+            $log_info['vumi_office_mowja_id']    = 0;
+            $log_info['vumi_office_address']     = $vumiOffice->address;
+            $log_info['vumi_office_status']      = 1;
+            $log_info['vumi_office_deleted_by']  = Auth::user()->id;
+            $log_info['vumi_office_id'] = $vumiOffice->id;
+
             $vumiOffice->delete();
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'Vumi Office Successfully Deleted');
         } else {
             return redirect()->back()->withErrors('No Data Found');

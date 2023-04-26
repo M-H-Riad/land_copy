@@ -7,6 +7,7 @@ use App\Modules\Land\Models\Land;
 use App\Modules\Land\Models\Property;
 use App\Modules\Land\Models\PropertyType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
@@ -67,8 +68,23 @@ class PropertyController extends Controller
             'status' => 1
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'property';
+        $log_info['operation']   =  1;
+        $log_info['land_properties_title']   = $request->title;
+        $log_info['land_properties_land_id']   =  $request->land_id;
+        $log_info['land_properties_latitude'] = $request->latitude;
+        $log_info['land_properties_longitude'] =$request->longitude;
+        $log_info['land_properties_type_id'] =$request->property_type_id;
+        $log_info['land_properties_status'] = 1;
+
         try {
-            Property::create($data);
+            $id=Property::create($data)->id;
+            $log_info['land_properties_id'] = $id;
+            LogDetailsStore($log_info);
+
             return redirect('land/land/'.$request->land_id)->with('success', 'Property added successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -128,8 +144,22 @@ class PropertyController extends Controller
             'status' => $request->status,
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'property';
+        $log_info['operation']   =  2;
+        $log_info['land_properties_title']   = $request->title;
+        $log_info['land_properties_land_id']   =  $request->land_id;
+        $log_info['land_properties_latitude'] = $request->latitude;
+        $log_info['land_properties_longitude'] =$request->longitude;
+        $log_info['land_properties_type_id'] =$request->property_type_id;
+        $log_info['land_properties_status'] =$request->status;
+        $log_info['land_properties_id'] = $id;
+       
         try {
             Property::where('id', $id)->update($data);
+            LogDetailsStore($log_info);
             return redirect('land/property/'.$id)->with('success', 'Property updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);

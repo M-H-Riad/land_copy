@@ -8,6 +8,7 @@ use App\Modules\Land\Models\Thana;
 use App\Modules\Land\Models\Land;
 use App\Modules\Land\Models\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Validation\Rule;
@@ -60,8 +61,19 @@ class ZilaController extends Controller
             'status'    => 1
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'zila';
+        $log_info['operation']   = 1;
+        $log_info['zila_title']   = $request->title;
+        $log_info['zila_status']   = 1;
+
         try {
-            Zila::create($data);
+            $id=Zila::create($data)->id;
+            $log_info['zila_id']=$id;
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'Zila added successfully');
         } catch (\Exception $ex) {
             dd($ex);
@@ -149,8 +161,19 @@ class ZilaController extends Controller
             'status'    => $request->status
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'zila';
+        $log_info['operation']   = 2;
+        $log_info['zila_title']   = $request->title;
+        $log_info['zila_status']   = $request->status;
+        $log_info['zila_id']=$id;
+ 
         try {
             Zila::where('id', $id)->update($data);
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'Zila updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -170,7 +193,19 @@ class ZilaController extends Controller
             if( Thana::where('zila_id',$id)->exists()){
                 return redirect()->back()->withErrors("Sorry, You can not delete this Zila");
             }
+            $zila=Zila::find($id);
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'zila';
+            $log_info['operation']   = 3;
+            $log_info['zila_title']   = $zila->title;
+            $log_info['zila_status']   = $zila->status;
+            $log_info['zila_id']=$id;
+
             Zila::where('id', $id)->delete();
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', "Zila successfully deleted");
         } else {
             return redirect()->back()->withErrors("No Data Found");

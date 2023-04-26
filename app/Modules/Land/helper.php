@@ -16,4 +16,5 @@ function landNamjariDropdown()
 {
     $namjari = \App\Modules\Land\Models\Land::groupBy('namjari')->pluck('namjari', 'namjari');
     return $namjari ? $namjari->toArray() : [];
-}
+} 
+

@@ -14,6 +14,7 @@ use Excel;
 use File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Mpdf\Config\ConfigVariables;
@@ -61,6 +62,7 @@ class LandController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $valid = $this->validate($request, [
             'title'             => 'required',
             'zila_id'           => 'required',
@@ -108,39 +110,77 @@ class LandController extends Controller
             'status'            => 1
         ];
 
+        //log Info---------
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'land';
+        $log_info['menu_name']   = 'land';
+        $log_info['operation']   =  1;
+        $log_info['land_title']  = $request->title;
+        $log_info['land_zila_id'] =$request->zila_id;
+        $log_info['land_thana_id']=$request->thana_id;
+        $log_info['land_area_id'] = $request->area_id;
+        $log_info['land_zone_id'] = $request->zone_id;
+        $log_info['land_source_id'] =$request->land_source_id;
+        $log_info['land_address'] =$request->address;
+        $log_info['land_dag_no'] =$request->dag_no;
+        $log_info['land_khotian'] =$request->khotian;
+        $log_info['land_quantity'] = $request->quantity;
+        $log_info['land_khajna_land']=$request->khajna_land;
+        $log_info['land_ownership_details']=$request->ownership_details;
+        $log_info['land_current_status']=$request->current_status;
+
+        // $log_info['land_khajna']=$request->ownership_details;
+        // $log_info['land_namjari']=$request->ownership_details;
+
+        $log_info['land_coordinates']=$request->coordinates;
+        $log_info['land_comment']=$request->comment;
+        $log_info['land_status']=1;
+        $log_info['land_doc_name_1']=$request->doc_name_1;
+        $log_info['land_doc_name_2']=$request->doc_name_2;
+        $log_info['land_doc_name_3']=$request->doc_name_3;
+        $log_info['land_doc_name_4']=$request->doc_name_4;
+        $log_info['land_doc_name_5']=$request->doc_name_5;
+        $log_info['land_created_by']=Auth::user()->id;
+        
         try {
             if ($request->hasFile('doc_1')) {
                 $fileName = $request->land_source_id .'-1'. time() . '.' . $request->file('doc_1')->getClientOriginalExtension();
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_1')));
                 $data['doc_1'] = $path . $fileName;
+                $log_info['land_doc_1']=$path . $fileName;
             }
             if ($request->hasFile('doc_2')) {
                 $fileName = $request->land_source_id .'-2'. time() . '.' . $request->file('doc_2')->getClientOriginalExtension();
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_2')));
                 $data['doc_2'] = $path . $fileName;
+                $log_info['land_doc_2']=$path . $fileName;
             }
             if ($request->hasFile('doc_3')) {
                 $fileName = $request->land_source_id .'-3'. time() . '.' . $request->file('doc_3')->getClientOriginalExtension();
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_3')));
                 $data['doc_3'] = $path . $fileName;
+                $log_info['land_doc_3']=$path . $fileName;
             }
             if ($request->hasFile('doc_4')) {
                 $fileName = $request->land_source_id .'-4'. time() . '.' . $request->file('doc_4')->getClientOriginalExtension();
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_4')));
-                $data['doc_4'] = $path . $fileName;
+                $log_info['land_doc_4']=$path . $fileName;
             }
             if ($request->hasFile('doc_5')) {
                 $fileName = $request->land_source_id .'-5'. time() . '.' . $request->file('doc_5')->getClientOriginalExtension();
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_5')));
                 $data['doc_5'] = $path . $fileName;
+                $log_info['land_doc_5']=$path . $fileName;
             }
-// dd($data);
-            Land::create($data);
+            $id=Land::create($data)->id;
+            $log_info['land_id']=$id;
+            LogDetailsStore($log_info);
+
             return redirect('land/land/')->with('success', 'Land added successfully');
         } catch (\Exception $ex) {
             dd($ex);
@@ -234,7 +274,6 @@ class LandController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $this->validate($request, [
             'title'             => 'required',
             'zila_id'           => 'required',
@@ -278,6 +317,44 @@ class LandController extends Controller
             'doc_name_4'        => $request->doc_name_4,
             'doc_name_5'        => $request->doc_name_5,
         ];
+          $land_data=Land::find($id);
+ 
+          //log Info---------
+          $log_info['user_id']     = Auth::user()->id;
+          $log_info['module_name'] = 'land';
+          $log_info['menu_name']   = 'land';
+          $log_info['operation']   =  2;
+          $log_info['land_title']  = $request->title;
+          $log_info['land_zila_id'] =$request->zila_id;
+          $log_info['land_thana_id']=$request->thana_id;
+          $log_info['land_area_id'] = $request->area_id;
+          $log_info['land_zone_id'] = $request->zone_id;
+          $log_info['land_source_id'] =$request->land_source_id;
+          $log_info['land_address'] =$request->address;
+          $log_info['land_dag_no'] =$request->dag_no;
+          $log_info['land_khotian'] =$request->khotian;
+          $log_info['land_quantity'] = $request->quantity;
+          $log_info['land_khajna_land']=$request->khajna_land;
+          $log_info['land_ownership_details']=$request->ownership_details;
+          $log_info['land_current_status']=$request->current_status;
+  
+          // $log_info['land_khajna']=$request->ownership_details;
+          // $log_info['land_namjari']=$request->ownership_details;
+  
+          $log_info['land_coordinates']=$request->coordinates;
+          $log_info['land_comment']=$request->comment;
+          $log_info['land_status']=$request->status;
+          $log_info['land_doc_name_1']=$request->doc_name_1;
+          $log_info['land_doc_name_2']=$request->doc_name_2;
+          $log_info['land_doc_name_3']=$request->doc_name_3;
+          $log_info['land_doc_name_4']=$request->doc_name_4;
+          $log_info['land_doc_name_5']=$request->doc_name_5;
+          $log_info['land_updated_by']=Auth::user()->id;
+          $log_info['land_doc_1']=$land_data->doc_1;
+          $log_info['land_doc_2']=$land_data->doc_2;
+          $log_info['land_doc_3']=$land_data->doc_3;
+          $log_info['land_doc_4']=$land_data->doc_4;
+          $log_info['land_doc_5']=$land_data->doc_5;
 
         $land = Land::where('id', $id)->first();
         try {
@@ -293,6 +370,7 @@ class LandController extends Controller
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_1')));
                 $data['doc_1'] = $path . $fileName;
+                $log_info['land_doc_1']=$path . $fileName;
             }
             if ($request->hasFile('doc_2') && isset($request->doc_2)) {
                 // Remove previous image.
@@ -306,6 +384,7 @@ class LandController extends Controller
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_2')));
                 $data['doc_2'] = $path . $fileName;
+                $log_info['land_doc_2']=$path . $fileName;
             }
             if ($request->hasFile('doc_3') && isset($request->doc_3)) {
                 // Remove previous image.
@@ -319,6 +398,7 @@ class LandController extends Controller
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_3')));
                 $data['doc_3'] = $path . $fileName;
+                $log_info['land_doc_3']=$path . $fileName;
             }
             if ($request->hasFile('doc_4') && isset($request->doc_4)) {
                 // Remove previous image.
@@ -332,6 +412,7 @@ class LandController extends Controller
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_4')));
                 $data['doc_4'] = $path . $fileName;
+                $log_info['land_doc_4']=$path . $fileName;
             }
             if ($request->hasFile('doc_5') && isset($request->doc_5)) {
                 // Remove previous image.
@@ -345,9 +426,13 @@ class LandController extends Controller
                 $path = 'uploads/land-document/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('doc_5')));
                 $data['doc_5'] = $path . $fileName;
+                $log_info['land_doc_5']=$path . $fileName;
             }
 
             Land::where('id', $id)->update($data);
+            $log_info['land_id']=$id;
+            LogDetailsStore($log_info);
+
             return redirect('land/land/')->with('success', 'Land updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -365,7 +450,50 @@ class LandController extends Controller
     public function destroy(Land $land)
     {
         if($land) {
+            $land_data=Land::find($id);
+ 
+            //log Info---------
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'land';
+            $log_info['menu_name']   = 'land';
+            $log_info['operation']   =  3;
+            $log_info['land_title']  = $land_data->title;
+            $log_info['land_zila_id'] =$land_data->zila_id;
+            $log_info['land_thana_id']=$land_data->thana_id;
+            $log_info['land_area_id'] = $land_data->area_id;
+            $log_info['land_zone_id'] = $land_data->zone_id;
+            $log_info['land_source_id'] =$land_data->land_source_id;
+            $log_info['land_address'] =$land_data->address;
+            $log_info['land_dag_no'] =$land_data->dag_no;
+            $log_info['land_khotian'] =$land_data->khotian;
+            $log_info['land_quantity'] = $land_data->quantity;
+            $log_info['land_khajna_land']=$land_data->khajna_land;
+            $log_info['land_ownership_details']=$land_data->ownership_details;
+            $log_info['land_current_status']=$land_data->current_status;
+    
+            // $log_info['land_khajna']=$request->ownership_details;
+            // $log_info['land_namjari']=$request->ownership_details;
+    
+            $log_info['land_coordinates']=$land_data->coordinates;
+            $log_info['land_comment']=$land_data->comment;
+            $log_info['land_status']=$land_data->status;
+            $log_info['land_doc_name_1']=$land_data->doc_name_1;
+            $log_info['land_doc_name_2']=$land_data->doc_name_2;
+            $log_info['land_doc_name_3']=$land_data->doc_name_3;
+            $log_info['land_doc_name_4']=$land_data->doc_name_4;
+            $log_info['land_doc_name_5']=$land_data->doc_name_5;
+            $log_info['land_deleted_by']=Auth::user()->id;
+            $log_info['land_doc_1']=$land_data->doc_1;
+            $log_info['land_doc_2']=$land_data->doc_2;
+            $log_info['land_doc_3']=$land_data->doc_3;
+            $log_info['land_doc_4']=$land_data->doc_4;
+            $log_info['land_doc_5']=$land_data->doc_5;
+            $log_info['land_id']=$land_data->id;
+
             $land->delete();
+
+            LogDetailsStore($log_info);
+
             return redirect()->back()->with('success', 'Land Successfully Deleted');
         } else {
             return redirect()->back()->withErrors('No Data Found');
