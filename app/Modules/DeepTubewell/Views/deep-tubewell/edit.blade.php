@@ -42,7 +42,7 @@
           <div class="form-group col-md-12">
               <label for="area_id" class="col-md-3 control-label">মৌজা<span style="color:red">*</span></label>
               <div class="col-md-5">
-                {!! Form::select('area_id', $areas, $deep_tubewell->area_id, ['class' => 'form-control select2','placeholder' => 'Select Area', 'style' => 'width:100%']) !!}
+                {!! Form::select('area_id', $areas, $deep_tubewell->area_id, ['class' => 'form-control select2','placeholder' => 'Select Land Area', 'style' => 'width:100%']) !!}
               </div>
           </div>
           <div class="form-group col-md-12">
@@ -96,6 +96,7 @@
             </div>
             <div class="col-md-3" style="margin-top: 5px;">
                 {{ Form::file('onumoti_chukti_boraddo_attach', null, ['class' => '']) }}
+                <span class="col-md-3"><img class="card-img-top" src="{{ asset($deep_tubewell->onumoti_chukti_boraddo_attach) }}" alt="doc_5" style="height: 50px; width: 100px;" /></span>
             </div>
           </div>
 
@@ -114,6 +115,7 @@
             </div>
             <div class="col-md-3" style="margin-top: 5px;">
                 {{ Form::file('dokholpotro_attach', null, ['class' => '']) }}
+                <span class="col-md-3"><img class="card-img-top" src="{{ asset($deep_tubewell->dokholpotro_attach) }}" alt="doc_5" style="height: 50px; width: 100px;" /></span>
             </div>
           </div>
 
@@ -151,8 +153,62 @@
           </div>  
 
           <div class="form-group col-md-12">
-              <label for="area_id" class="col-md-3 control-label">অন্যান্য<span style="color:red">*</span></label>
-          </div> 
+             <label for="area_id" class="col-md-3 control-label">অন্যান্য<span style="color:red">*</span></label>
+            <div class="col-md-5">
+                    <div>
+                         <div class="col-md-6" style="margin-top: 5px;text-decoration:underline;">সংযুক্তির নাম</div>
+                         <div class="col-md-6" style="margin-top: 5px;text-decoration:underline;">সংযুক্তি</div>
+                    </div>
+                <div id="wrapperfee">
+                <?php 
+                    $other_attaches = json_decode($deep_tubewell->other_attach);
+                    //echo "<pre>"; print_r($other_attaches);
+                    foreach($other_attaches as $other_attach){
+                ?>
+                    <div class="col-md-12">
+                        <div class="col-md-5" style="margin-top: 5px;">
+                            {{ Form::text('document_name[]', $other_attach->document_name, ['class' => 'form-control', 'placeholder' => 'Document Name']) }} 
+                            <!-- doc_name_2 -->
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                          
+                            <input type="file" name="document[]">
+                            <input type="hidden" name="document[]" value="{{$other_attach->file_name}}">
+                            <span class="col-md-3"><img class="card-img-top" src="{{ asset($other_attach->file_name) }}" alt="doc_5" style="height: 50px; width: 100px;" /></span>
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                            <button style="margin-left: 80px;display: block !important;" type="button" class="btn btn-sm btn-outline-danger editbtnRemove">
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                <?php } ?>
+               
+                   
+                
+                    <a type="button" class="addmorefee"> + Add more </a>
+                    
+                    <div class="morefeecol multifield_content">
+                        <div class="col-md-5" style="margin-top: 5px;">
+                            {{ Form::text('document_name[]', null, ['class' => 'form-control', 'placeholder' => 'Document Name']) }} 
+                            <!-- doc_name_2 -->
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                            {{ Form::file('document[]', null, ['class' => '']) }}
+                        </div>
+                        <div class="col-md-3" style="margin-top: 5px;">
+                            <button style="margin-left: 80px;" type="button" class="btn btn-sm btn-outline-danger btnRemove">
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    
+
+                    
+                </div>
+            </div>
+          </div>
 
           <hr>
           <div class="form-group">
@@ -185,14 +241,15 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/jquery.multifield.min.js') }}"></script>
 <script>
     $('#search_view').hide();
     $(document).ready(function() {
-        // $('#wrapperfee').multifield({
-        //     section: '.morefeecol',
-        //     btnAdd:'.addmorefee',
-        //     btnRemove:'.btnRemove',
-        // });
+        $('#wrapperfee').multifield({
+            section: '.morefeecol',
+            btnAdd:'.addmorefee',
+            btnRemove:'.btnRemove',
+        });
 
         
 
@@ -244,6 +301,36 @@
              $('#source_id').val(id);
              $('#search_view').hide();
         });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('select[name="zone_id"]').on('change', function() {
+            var zoneID = $(this).val();
+            var url = '{{ url("land/getareas/")}}/' + zoneID;
+            if(zoneID) {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="area_id"]').empty();
+                        $('select[name="area_id"]').append('<option value="">Select Area</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="area_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                });
+            }else{
+                $('select[name="city"]').empty();
+            }
+        });
+
+        $('.editbtnRemove').click(function(event){
+            event.preventDefault();
+            $(this).parent('div').parent('div').remove();
+        });
+
     });
 </script>
 @endsection

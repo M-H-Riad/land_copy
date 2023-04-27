@@ -88,5 +88,29 @@ class SourceTypeController extends Controller
         }
     }
 
+    public function create_by_ajax(Request $request)
+    {
+        $this->validate($request, [
+            'title'     => 'required|unique:deep_tubewell_source_type,title',
+        ]);
+        $data = [
+            'title'     => $request->title,
+            'status'    => 1
+        ];
+
+        try { 
+            DeepTubewellSourceType::create($data);
+            // return redirect()->back()->with('success', 'Land Area added successfully');
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            // return redirect()->back()->withErrors("Something went wrong. Please try again.");
+        }
+
+        $source_types = DeepTubewellSourceType::pluck('title', 'id');
+        return response()->json([
+            'source_types'       => $source_types,
+        ]);
+    }
+
     
 }
