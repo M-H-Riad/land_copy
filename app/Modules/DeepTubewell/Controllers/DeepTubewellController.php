@@ -26,6 +26,7 @@ class DeepTubewellController extends Controller
 
     public function index(Request $request)
     {
+    
         $areas          = Area::pluck('title', 'id');
         $zones          = Zone::pluck('title', 'id');
         $source_type    = DeepTubewellSourceType::pluck('title', 'id');
@@ -61,6 +62,7 @@ class DeepTubewellController extends Controller
             
         ]);
 
+
         if(empty($request->source)){
            $sour['title'] = $request->source_text;
            $get_source = DeepTubewellSource::create($sour);
@@ -76,31 +78,50 @@ class DeepTubewellController extends Controller
             'source'                              => $source_id,
             'onumoti_chukti_boraddo'              => $request->onumoti_chukti_boraddo,
             'onumoti_chukti_boraddo_date'         => $request->onumoti_chukti_boraddo_date,
-            // 'onumoti_chukti_boraddo_attach_name'  => $request->onumoti_chukti_boraddo_attach_name,
+            'onumoti_chukti_boraddo_attach_name'  => $request->onumoti_chukti_boraddo_attach_name,
             'dokholpotro_date'                    => $request->dokholpotro_date,
-            // 'dokholpotro_attach_name'             => $request->dokholpotro_attach_name,
+            'dokholpotro_attach_name'             => $request->dokholpotro_attach_name,
             'deep_tubewell_place_name'            => $request->deep_tubewell_place_name,
             'khotiyan_no'                         => $request->khotiyan_no,
             'dag_no'                              => $request->dag_no,
             'jomir_poriman'                       => $request->jomir_poriman,
             'destination'                         => $request->destination,
         ];
-        // echo "<pre>";print_r($data);die();
+   
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'deep-tubewell';
+        $log_info['menu_name']   = 'deep-tubewell';
+        $log_info['operation']   =  1;
+        $log_info['deep_tubewell_zone_id']=$request->zone_id;
+        $log_info['deep_tubewell_area_id']=$request->area_id;
+        $log_info['deep_tubewell_source_type']=$request->zone_id;
+        $log_info['deep_tubewell_source']=$source_id;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo']=$request->onumoti_chukti_boraddo;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo_date']=$request->onumoti_chukti_boraddo_date;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo_attach_name']=$request->onumoti_chukti_boraddo_attach_name;
+        $log_info['deep_tubewell_dokholpotro_date']=$request->dokholpotro_date;
+        $log_info['deep_tubewell_dokholpotro_attach_name']=$request->dokholpotro_attach_name;
+        $log_info['deep_tubewell_deep_tubewell_place_name']=$request->deep_tubewell_place_name;
+        $log_info['deep_tubewell_khotiyan_no']=$request->khotiyan_no;
+        $log_info['deep_tubewell_dag_no']=$request->dag_no;
+        $log_info['deep_tubewell_jomir_poriman']=$request->jomir_poriman;
+        $log_info['deep_tubewell_destination']=$request->destination;
+       
 
-        $chk_log = LogDetailsStore(Auth::user()->id,'deep-tubewell','deep-tubewell',1);//1=Insert,2=Update,3=Delete.
-      
         try {
             if ($request->hasFile('onumoti_chukti_boraddo_attach')) {
                 $fileName = $request->land_source_id .'-1'. time() . '.' . $request->file('onumoti_chukti_boraddo_attach')->getClientOriginalExtension();
                 $path = 'uploads/deep-tubewell/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('onumoti_chukti_boraddo_attach')));
                 $data['onumoti_chukti_boraddo_attach'] = $path . $fileName;
+                $log_info['deep_tubewell_onumoti_chukti_boraddo_attach']=$path.$fileName;
             }
             if ($request->hasFile('dokholpotro_attach')) {
                 $fileName = $request->land_source_id .'-2'. time() . '.' . $request->file('dokholpotro_attach')->getClientOriginalExtension();
                 $path = 'uploads/deep-tubewell/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('dokholpotro_attach')));
-                $data['dokholpotro_attach'] = $path . $fileName;
+                $data['dokholpotro_attach'] = $path.$fileName;
+                $log_info['deep_tubewell_dokholpotro_attach']=$path.$fileName;
             }
             if ($request->hasFile('document')) {
                 //echo "b<pre>";print_r($request->document_name);die();
@@ -115,11 +136,14 @@ class DeepTubewellController extends Controller
                 }
            
                 $data['other_attach']=json_encode($deep_tubewell_documents);
+                $log_info['deep_tubewell_other_attach']=json_encode($deep_tubewell_documents);
             }
 
             // echo "aaaaa<pre>";print_r($data);die();
             
-            DeepTubewell::create($data);
+            $id=DeepTubewell::create($data)->id;
+            $log_info['deep_tubewell_id']=$id;
+            LogDetailsStore($log_info);
             return redirect('deep-tubewell/deep-tubewell/')->with('success', 'Deep Tubewell added successfully');
         } catch (\Exception $ex) {
            
@@ -167,7 +191,7 @@ class DeepTubewellController extends Controller
             'destination'   => 'required',
         ]);
 
-        
+        $deep_tubewell=DeepTubewell::find($id);
         if($request->source){
             $source_id = $request->source;
         }else{
@@ -198,7 +222,28 @@ class DeepTubewellController extends Controller
             'destination'                         => $request->destination,
         ];
         
-        // echo "<pre>";print_r($data);die();
+        $log_info['user_id']     = Auth::user()->id;
+        $log_info['module_name'] = 'deep-tubewell';
+        $log_info['menu_name']   = 'deep-tubewell';
+        $log_info['operation']   =  2;
+        $log_info['deep_tubewell_zone_id']=$request->zone_id;
+        $log_info['deep_tubewell_area_id']=$request->area_id;
+        $log_info['deep_tubewell_source_type']=$request->zone_id;
+        $log_info['deep_tubewell_source']=$source_id;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo']=$request->onumoti_chukti_boraddo;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo_date']=$request->onumoti_chukti_boraddo_date;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo_attach_name']=$request->onumoti_chukti_boraddo_attach_name;
+        $log_info['deep_tubewell_dokholpotro_date']=$request->dokholpotro_date;
+        $log_info['deep_tubewell_dokholpotro_attach_name']=$request->dokholpotro_attach_name;
+        $log_info['deep_tubewell_deep_tubewell_place_name']=$request->deep_tubewell_place_name;
+        $log_info['deep_tubewell_khotiyan_no']=$request->khotiyan_no;
+        $log_info['deep_tubewell_dag_no']=$request->dag_no;
+        $log_info['deep_tubewell_jomir_poriman']=$request->jomir_poriman;
+        $log_info['deep_tubewell_destination']=$request->destination;
+        $log_info['deep_tubewell_onumoti_chukti_boraddo_attach']=$deep_tubewell->onumoti_chukti_boraddo_attach;
+        $log_info['deep_tubewell_dokholpotro_attach']=$deep_tubewell->dokholpotro_attach;
+        $log_info['deep_tubewell_other_attach']=$deep_tubewell->other_attach;
+
         $deepTubewell = DeepTubewell::where('id', $id)->first();
         try {
             if ($request->hasFile('onumoti_chukti_boraddo_attach') && isset($request->onumoti_chukti_boraddo_attach)) {
@@ -211,6 +256,7 @@ class DeepTubewellController extends Controller
                 $path = 'uploads/deep-tubewell/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('onumoti_chukti_boraddo_attach')));
                 $data['onumoti_chukti_boraddo_attach'] = $path . $fileName;
+                $log_info['deep_tubewell_onumoti_chukti_boraddo_attach']=$path.$fileName;
             }
             if ($request->hasFile('dokholpotro_attach') && isset($request->dokholpotro_attach)) {
                 $image = public_path($deepTubewell->dokholpotro_attach); // get previous image from folder
@@ -221,6 +267,7 @@ class DeepTubewellController extends Controller
                 $path = 'uploads/deep-tubewell/';
                 Storage::disk('public-root')->put($path . $fileName, file_get_contents($request->file('dokholpotro_attach')));
                 $data['dokholpotro_attach'] = $path . $fileName;
+                $log_info['deep_tubewell_dokholpotro_attach']=$path.$fileName;
             }
 
             
@@ -258,11 +305,14 @@ class DeepTubewellController extends Controller
                 }
                 // echo "<pre>";print_r($deep_tubewell_documents);die();
                 $data['other_attach']=json_encode($deep_tubewell_documents);
+                $log_info['deep_tubewell_other_attach']=json_encode($deep_tubewell_documents);
             }
 
             // echo "<pre>";print_r($data);die();
             
             DeepTubewell::where('id', $id)->update($data);
+            $log_info['deep_tubewell_id']=$id;
+            LogDetailsStore($log_info);
             return redirect('deep-tubewell/deep-tubewell/')->with('success', 'Deep-Tubewell updated successfully');
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -273,7 +323,31 @@ class DeepTubewellController extends Controller
     public function destroy(DeepTubewell $deep_tubewell)
     {
         if($deep_tubewell) {
+            $log_info['user_id']     = Auth::user()->id;
+            $log_info['module_name'] = 'deep-tubewell';
+            $log_info['menu_name']   = 'deep-tubewell';
+            $log_info['operation']   =  3;
+            $log_info['deep_tubewell_zone_id']=$deep_tubewell->zone_id;
+            $log_info['deep_tubewell_area_id']=$deep_tubewell->area_id;
+            $log_info['deep_tubewell_source_type']=$deep_tubewell->zone_id;
+            $log_info['deep_tubewell_source']=$deep_tubewell->source;
+            $log_info['deep_tubewell_onumoti_chukti_boraddo']=$deep_tubewell->onumoti_chukti_boraddo;
+            $log_info['deep_tubewell_onumoti_chukti_boraddo_date']=$deep_tubewell->onumoti_chukti_boraddo_date;
+            $log_info['deep_tubewell_onumoti_chukti_boraddo_attach_name']=$deep_tubewell->onumoti_chukti_boraddo_attach_name;
+            $log_info['deep_tubewell_dokholpotro_date']=$deep_tubewell->dokholpotro_date;
+            $log_info['deep_tubewell_dokholpotro_attach_name']=$deep_tubewell->dokholpotro_attach_name;
+            $log_info['deep_tubewell_deep_tubewell_place_name']=$deep_tubewell->deep_tubewell_place_name;
+            $log_info['deep_tubewell_khotiyan_no']=$deep_tubewell->khotiyan_no;
+            $log_info['deep_tubewell_dag_no']=$deep_tubewell->dag_no;
+            $log_info['deep_tubewell_jomir_poriman']=$deep_tubewell->jomir_poriman;
+            $log_info['deep_tubewell_destination']=$deep_tubewell->destination;
+            $log_info['deep_tubewell_onumoti_chukti_boraddo_attach']=$deep_tubewell->onumoti_chukti_boraddo_attach;
+            $log_info['deep_tubewell_dokholpotro_attach']=$deep_tubewell->dokholpotro_attach;
+            $log_info['deep_tubewell_other_attach']=$deep_tubewell->other_attach;
+
             $deep_tubewell->delete();
+            $log_info['deep_tubewell_id']=$deep_tubewell->id;
+            LogDetailsStore($log_info);
             return redirect()->back()->with('success', 'Deep-Tubewell Successfully Deleted');
         } else {
             return redirect()->back()->withErrors('No Data Found');
