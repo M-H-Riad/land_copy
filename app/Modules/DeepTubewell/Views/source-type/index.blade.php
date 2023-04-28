@@ -4,7 +4,7 @@
 <div class="row animated zoomIn">
 	@include('errorOrSuccess')
 	<div class="col-md-12">
-		@include('Land::source.filter')
+		@include('DeepTubewell::source-type.filter')
 	</div>
 	<div class="col-md-12">
 		<!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -45,7 +45,7 @@
 								@endif
 							</td>
 							<td class="action_buttons_style">
-								<button  data-toggle="modal" data-target="#edit-land_source-modal-{{$source_type->id}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>
+								<button  data-toggle="modal" data-target="#edit-source_type-modal-{{$source_type->id}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>
 								@include('DeepTubewell::source-type.edit')
 								<form action="{{ route('source-type.destroy',$source_type->id) }}" method="POST">
 									{{ method_field('DELETE') }}

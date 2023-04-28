@@ -197,8 +197,9 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}"  type="text/javascript"></script>
+
 <script> 
+
      $('#pswd').keyup(function(e){
         alert('jhii');
             $("#password_error").html("Please give at least six length Password. Atleast One upper case and one lower case letter and one number"); 

@@ -79,7 +79,7 @@ class UserController extends Controller {
      */
     public function create()
     {
-//        if(!Auth::user()->can('user-management')) { abort(403); }
+        //    if(!Auth::user()->can('user-management')) { abort(403); }
         if(Auth::user()->stakeholder_id) {
             $roles = ['' => 'Select One'] + Role::where(['stakeholder_id' => Auth::user()->stakeholder_id])->pluck('display_name', 'id')->all();
         }else{
