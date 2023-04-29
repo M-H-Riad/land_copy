@@ -26,9 +26,11 @@ Route::group(['module' => 'User', 'middleware' => ['web', 'auth','auditTrails'],
 
     Route::get('register', ['as' => 'register', 'uses' => 'UserController@register']);
     Route::post('register-create', ['as' => 'register-create', 'uses' => 'UserController@register_create']);
-    Route::get('user-activation/{id}', ['as' => 'user_activation', 'uses' => 'UserController@user_activation']);
 });
 
+Route::group(['module' => 'User', 'middleware' => ['web'], 'namespace' => 'App\Modules\User\Controllers'], function() {
+Route::get('user-activation/{id}', ['as' => 'user_activation', 'uses' => 'UserController@user_activation']);
+});
 
 
 

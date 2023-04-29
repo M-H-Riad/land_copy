@@ -3,7 +3,10 @@
 namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use App\Mail\resetMail;
+use Illuminate\Support\Facades\Session;
 
 trait SendsPasswordResetEmails
 {
@@ -25,18 +28,23 @@ trait SendsPasswordResetEmails
      */
     public function sendResetLinkEmail(Request $request)
     {
+
         $this->validateEmail($request);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
-        $response = $this->broker()->sendResetLink(
-            $request->only('email')
-        );
+        // $response = $this->broker()->sendResetLink(
+        //     $request->only('email')
+        // );
 
-        return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($response)
-                    : $this->sendResetLinkFailedResponse($request, $response);
+        // return $response == Password::RESET_LINK_SENT
+        //             ? $this->sendResetLinkResponse($response)
+        //             : $this->sendResetLinkFailedResponse($request, $response);
+        $token=User::where('email',$request->email)->first();  
+        Mail::to($request['email'])->send(new resetMail($token->remember_token));
+        Session::flash('success','We have e-mailed your password reset link!');
+        return redirect()->back();
     }
 
     /**

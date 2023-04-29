@@ -13,6 +13,7 @@ use DB;
 use App\Mail\UserRegistration;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller {
 
@@ -231,9 +232,10 @@ class UserController extends Controller {
             'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
             
         ]);
-  
+        $remember_token=Str::random(60);
         $data = [
             'full_name' => $request['first_name'].' '.$request['last_name'],
+            'name' => $request['first_name'].' '.$request['last_name'],
             'full_name_ban' => $request['first_name_ban'].' '.$request['last_name_ban'],
             'pf_no' => $request['pf_no'],
             'office_id' => $request['office_id'],
@@ -243,6 +245,7 @@ class UserController extends Controller {
             'email'     => $request['email'],
             'user_name' => explode('@',$request['email'])[0],
             'password'      => bcrypt($request['password']),
+            'remember_token' =>$remember_token
         ];
 
         $id=user::create($data)->id;
@@ -328,24 +331,21 @@ public function change_password(Request $request){
 
    public function user_activation($id){
         $data=User::find($id);
-
         $startTime = Carbon::parse($data->created_at);
         $endTime = Carbon::parse(now());
         $totalDuration = $endTime->diffInMinutes($startTime);
        
         if($totalDuration > 30){
-            $datas['error']='Your 30 minutes time exceed. You have to activated your account within 30 minutes';
-            return view('emails.userRegistration',compact('datas'));
+
+            return redirect()->back()->withErrors('Your 30 minutes time exceed. You have to activated your account within 30 minutes');
         }
         else
         {
             $user            = User::findOrFail($id);
             $user->status     = 1;
             $user->save();
-
-            $data_new['success']='Congratulatons, Your account is activated!';
-
-            return view('emails.userRegistration',compact('data_new'));
+            
+            return redirect('/login')->with('success','Congratulatons, Your account is activated!');
         }
         
    }
