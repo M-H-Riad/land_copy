@@ -152,7 +152,7 @@
                 "info": true
             });
 
-            // highlight_nav('land_land');
+            highlight_nav('deep_tubewell');
         });
     </script>
 

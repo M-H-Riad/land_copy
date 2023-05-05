@@ -103,8 +103,8 @@
               </div>
           </div>
 
-          <div class="form-group col-md-12" style="margin-left: 70px;">
-            <label for="coordinates" class="col-md-2 control-label" style="margin-top: 5px;">অনুমতি/চুক্তি/বরাদ্দ সংযুক্তি</label>
+          <div class="form-group col-md-12">
+            <label for="coordinates" class="col-md-3 control-label" style="margin-top: 5px;">অনুমতি/চুক্তি/বরাদ্দ সংযুক্তি</label>
             <div class="col-md-3" style="margin-top: 5px;">
                 {{ Form::text('onumoti_chukti_boraddo_attach_name', null, ['class' => 'form-control', 'placeholder' => 'Document Name']) }}
                 <!-- doc_1 -->
@@ -121,8 +121,8 @@
               </div>
           </div>
 
-          <div class="form-group col-md-12" style="margin-left: 70px;">
-            <label for="coordinates" class="col-md-2 control-label" style="margin-top: 5px;">দখলপত্র সংযুক্তি</label>
+          <div class="form-group col-md-12">
+            <label for="coordinates" class="col-md-3 control-label" style="margin-top: 5px;">দখলপত্র সংযুক্তি</label>
             <div class="col-md-3" style="margin-top: 5px;">
                 {{ Form::text('dokholpotro_attach_name', null, ['class' => 'form-control', 'placeholder' => 'Document Name']) }} 
                 <!-- doc_name_2 -->
@@ -257,6 +257,8 @@
 <script>
     $('#search_view').hide();
     $(document).ready(function() {
+        highlight_nav('deep_tubewell');
+        
         $('#wrapperfee').multifield({
             section: '.morefeecol',
             btnAdd:'.addmorefee',

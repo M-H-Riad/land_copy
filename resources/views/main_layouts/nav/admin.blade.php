@@ -952,7 +952,7 @@
                     </a>
                 </li>
                 <li class="nav-item land_land">
-                    <a href="{{ URL::to('/land/land') }}">
+                    <a href="{{ URL::to('/land/land') }}"> 
                         <i class="fa fa-map"></i>
                         <span class="title">ল্যান্ড</span>
                     </a>
@@ -1039,7 +1039,7 @@
                 <li class="heading">
                     <h3 class="uppercase">Deep Tubewell</h3>
                 </li>
-                <li class="nav-item deep_tubewell">
+                <li class="nav-item deep_tubewell_source">
                     <a href="{{ URL::to('/deep-tubewell/source-type') }}">
                         <i class="fa fa-map-marker"></i>
                         <span class="title">উৎসের ধরণ</span>
@@ -1051,7 +1051,7 @@
                         <span class="title">ডিপ টিউবওয়েল</span>
                     </a>
                 </li>
-                <li class="nav-item deep_tubewell">
+                <li class="nav-item log_report">
                     <a href="{{ URL::to('/deep-tubewell/log-report') }}">
                         <i class="fa fa-map-marker"></i>
                         <span class="title">লগ রিপোর্ট</span>
