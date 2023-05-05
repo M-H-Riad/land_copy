@@ -40,6 +40,32 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request){
+
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'password' => 'required',
+        ]);
+        // $user=User::where('user_name',$request->user_name)->first();
+        // dd($user);
+        if(auth()->attempt(array('user_name'=>$request->user_name,'password'=>$request->password))){
+            
+            if(Auth::user()->status == 0){
+                Auth()->logout();
+                return redirect('/login')->withInput()->withErrors('Your access is disabled! Please contact your system admin.');
+            }
+
+            if(auth()->user()->status==1){
+                return redirect('/home');
+            }
+
+        }
+        else
+        {
+            return redirect('/login')->withInput()->withErrors('These credentials do not match our records');
+
+        }
+    }
     /**
      * Get the login username to be used by the controller.
      *
