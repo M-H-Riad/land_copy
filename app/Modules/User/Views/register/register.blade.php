@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('first_name_ban') ? ' has-error' : '' }}">
-                            <label for="first_name_ban" class="col-md-4 control-label">First Name (Ban)*</label>
+                            <label for="first_name_ban" class="col-md-4 control-label">First Name (Ban)</label>
 
                             <div class="col-md-6">
                                 <input id="first_name_ban" type="text" class="form-control" name="first_name_ban" value="{{ old('first_name_ban') }}"  autofocus>
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('last_name_ban') ? ' has-error' : '' }}">
-                            <label for="last_name_ban" class="col-md-4 control-label">Last Name (Bng)*</label>
+                            <label for="last_name_ban" class="col-md-4 control-label">Last Name (Bng)</label>
 
                             <div class="col-md-6">
                                 <input id="last_name_ban" type="text" class="form-control" name="last_name_ban" value="{{ old('last_name_ban') }}"  autofocus>
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office_id" class="col-md-4 control-label">Office Id</label>
+                            <label for="office_id" class="col-md-4 control-label">Office Id *</label>
 
                             <div class="col-md-6">
                                 <input id="office_id" type="text" class="form-control" name="office_id" value="{{ old('office_id') }}" autofocus>

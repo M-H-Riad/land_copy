@@ -1,7 +1,7 @@
 @extends('main_layouts.app')
 
 @section('content')
-
+@include('errorOrSuccess')
   <!-- BEGIN PAGE BREADCRUMB -->
   <ul class="page-breadcrumb breadcrumb">
       <li>

@@ -26,7 +26,7 @@ class LogReportController extends Controller
         if($request->orderby){
             ($request->orderby == 'asc') ? $loginfo->orderBy('id', 'ASC'):$loginfo->orderBy('id','DESC'); 
         }
-        $loginfos=$loginfo->get();
+        $loginfos=$loginfo->whereIn('operation',[1,2])->get();
         return view('DeepTubewell::log-report.index',compact('users','loginfos'));
     }
 

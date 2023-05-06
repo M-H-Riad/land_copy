@@ -308,12 +308,16 @@
                             </li>
                         </ul>
                     </li> -->
+                    @php
+                    $role_user=DB::table('role_user')->where('user_id',Auth::user()->id)->first();
+                    $roles=DB::table('roles')->where('id',$role_user->role_id)->first();
+                    @endphp
                     <!-- END TODO DROPDOWN -->
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> <i class="fa fa-user"></i> {{ Auth::user()->name }} </span>
+                            <span class="username username-hide-on-mobile"> <i class="fa fa-user"></i> {{ Auth::user()->name }} {{'('.$roles->display_name.')'}}</span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
 
                         </a>

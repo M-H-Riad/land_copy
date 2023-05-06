@@ -43,12 +43,12 @@ class LoginController extends Controller
     public function login(Request $request){
 
         $validated = $request->validate([
-            'user_name' => 'required',
+            'office_id' => 'required',
             'password' => 'required',
         ]);
-        // $user=User::where('user_name',$request->user_name)->first();
-        // dd($user);
-        if(auth()->attempt(array('user_name'=>$request->user_name,'password'=>$request->password))){
+        
+
+        if(auth()->attempt(array('office_id'=>$request->office_id,'password'=>$request->password))){
             
             if(Auth::user()->status == 0){
                 Auth()->logout();
