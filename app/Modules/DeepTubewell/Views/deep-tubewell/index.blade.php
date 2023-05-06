@@ -112,7 +112,8 @@
  
 @section('scripts')
     <script>
-       
-        
+       $(document).ready(function(){
+          highlight_nav('deep_tubewell');
+       });
     </script>
 @endsection

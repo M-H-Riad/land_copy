@@ -71,7 +71,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 
-		highlight_nav('land_source');
+		highlight_nav('deep_tubewell_source');
 	});
 </script>
 

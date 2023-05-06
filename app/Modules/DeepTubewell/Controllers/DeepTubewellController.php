@@ -126,20 +126,22 @@ class DeepTubewellController extends Controller
             if ($request->hasFile('document')) {
                 //echo "b<pre>";print_r($request->document_name);die();
                 $deep_tubewell_documents = array();
+                $i=0;
                 foreach($request->file('document') as $key=> $document){
-                    $fileName = time() . '.' . $document->getClientOriginalExtension();
+                    $fileName = $i.time() . '.' . $document->getClientOriginalExtension();
                     $path = 'uploads/deep-tubewell/';
                     Storage::disk('public-root')->put($path . $fileName, file_get_contents($document));
                       $remake_doc['file_name']= $path . $fileName;
                       $remake_doc['document_name']= $request->document_name[$key];
                     $deep_tubewell_documents[] = $remake_doc;
+                    $i++;
                 }
            
                 $data['other_attach']=json_encode($deep_tubewell_documents);
                 $log_info['deep_tubewell_other_attach']=json_encode($deep_tubewell_documents);
             }
 
-            // echo "aaaaa<pre>";print_r($data);die();
+            //  echo "aaaaa<pre>";print_r($data);die();
             
             $id=DeepTubewell::create($data)->id;
             $log_info['deep_tubewell_id']=$id;
@@ -289,19 +291,21 @@ class DeepTubewellController extends Controller
             //echo "<pre>";print_r($request->document);die();
             if(!empty($request->document)){
                 $deep_tubewell_documents = array();
+                $i=0;
                 foreach($request->document as $key=> $document){
                     if (is_string($document)) {
                         $remake_doc['file_name']= $document;
                         $remake_doc['document_name']= $request->document_name[$key];
                         $deep_tubewell_documents[] = $remake_doc;
                     }else{
-                        $fileName = time() . '.' . $document->getClientOriginalExtension();
+                        $fileName = $i.time() . '.' . $document->getClientOriginalExtension();
                         $path = 'uploads/deep-tubewell/';
                         Storage::disk('public-root')->put($path . $fileName, file_get_contents($document));
                         $remake_doc['file_name']= $path . $fileName;
                         $remake_doc['document_name']= $request->document_name[$key];
                         $deep_tubewell_documents[] = $remake_doc;
                     }
+                $i++;
                 }
                 // echo "<pre>";print_r($deep_tubewell_documents);die();
                 $data['other_attach']=json_encode($deep_tubewell_documents);

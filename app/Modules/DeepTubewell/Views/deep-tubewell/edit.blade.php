@@ -233,7 +233,7 @@
       "info": true
     });
 
-    highlight_nav('land');
+    highlight_nav('deep_tubewell');
   });
 </script>
 
