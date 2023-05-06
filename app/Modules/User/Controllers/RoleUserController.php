@@ -64,7 +64,7 @@ class RoleUserController extends Controller
         //$data['modules'] = Module::where('status',1)->get();
         $data['roles'] = Role::pluck('display_name','id')->toArray();
         $data['users'] = User::pluck('name','id')->toArray();
-        dd($data['roles']);
+        // dd($data['roles']);
         return View::make('User::role_user.create', $data);
     }
 

@@ -1035,7 +1035,8 @@
                 </li>
 
                 <!-- Start DeepTubewell -->
-
+            @endif
+            @if(Auth::user()->can(['manage_deeptubewell']))
                 <li class="heading">
                     <h3 class="uppercase">Deep Tubewell</h3>
                 </li>
@@ -1082,6 +1083,17 @@
                 </li>
 
                 <li class="nav-item users">
+                    <!-- <a href="{{ URL::to('/user/designation') }}" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">Designation</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <a href="{{ URL::to('/user/department') }}" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">Department</span>
+                        <span class="arrow"></span>
+                    </a> -->
+
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-user-secret"></i>
                         <span class="title">Users</span>
