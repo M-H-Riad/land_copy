@@ -76,7 +76,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="btn-group action_buttons_style" style="gap:4px;">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ url('land/land/'.$land->id.'/edit') }}">
                                                 <i class="fa fa-edit"></i> Edit

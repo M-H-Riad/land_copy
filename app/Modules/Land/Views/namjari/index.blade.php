@@ -108,7 +108,7 @@
                                     <td>{{$namjari->namjari_jot_no or ''}}</td>
                                     <td>{{$namjari->namjari_jl_no or ''}}</td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="btn-group action_buttons_style" style="gap:4px;">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ url('land/namjari/'.$namjari->id.'/edit') }}">
                                                 <i class="fa fa-edit"></i> Edit

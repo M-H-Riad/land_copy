@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
-            <div class="portlet light bordered">
+            <div class="portlet light bordered"> 
                 <div class="portlet-title">
                     <div class="caption font-green">
                         <!-- <i class="icon-settings font-green"></i> -->
@@ -50,7 +50,7 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="action_buttons_style">
                                         <button data-toggle="modal" data-target="#edit-land_area-modal-{{$area->id}}"
                                                 class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>
                                         @include('Land::area.edit')

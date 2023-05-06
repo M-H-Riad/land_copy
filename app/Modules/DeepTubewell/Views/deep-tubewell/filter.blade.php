@@ -40,10 +40,10 @@
                 <a href="{{url('deep-tubewell/deep-tubewell')}}" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Clear</a>
                 <button class="btn btn-success btn-sm" type="submit"><i class="fa fa-search"></i> Search</button>
                 @if($deepTubewells->count())
-                    <a target="_blank" href="" class="btn btn-warning btn-sm">
+                    <a target="_blank" href="{{route('deep-tubewell.pdf', \Request::all())}}" class="btn btn-warning btn-sm">
                         <i class="fa fa-file-pdf-o"></i> Download PDF
                     </a>
-                    <a target="_blank" href="" class=" btn btn-info btn-sm">
+                    <a target="_blank" href="{{route('deep-tubewell.export', \Request::all())}}" class=" btn btn-info btn-sm">
                         <i class="fa fa-file-excel-o"></i> Download Excel
                     </a>
                 @endif
@@ -51,4 +51,4 @@
         </div>
         {{Form::close()}}
     </div>
-</div>
+</div> 

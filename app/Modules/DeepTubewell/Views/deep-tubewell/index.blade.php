@@ -39,7 +39,7 @@
                             <th style="padding: 8px !important;">খতিয়ান নং</th>
                             <th style="padding: 8px !important;">দাগ নং</th>
                             <th style="padding: 8px !important;">জমির পরিমান</th>
-                            <th style="padding: 8px !important;">গন্তব্য</th>
+                            <th style="padding: 8px !important;">মন্তব্য</th>
                             <th style="padding: 8px !important;">Action</th>
                         </tr>
                         </thead>
@@ -68,7 +68,7 @@
                                     <td>{{$deepTubewell->khotiyan_no}}</td>
                                     <td>{{$deepTubewell->dag_no}}</td>
                                     <td>{{$deepTubewell->jomir_poriman}}</td>
-                                    <td>{{$deepTubewell->destination}}</td>
+                                    <td>{{$deepTubewell->destination}}</td> 
                                     <td class="action_buttons_style">
                                         
                                             <a class="btn btn-primary btn-sm"

@@ -76,7 +76,7 @@
                                 <dd>{{$deep_tubewell->jomir_poriman}}</dd>
                             </dl>
                             <dl class="dl-horizontal">
-                                <dt>গন্তব্য</dt>
+                                <dt>মন্তব্য</dt>
                                 <dd>{{$deep_tubewell->destination}}</dd>
                             </dl>
 

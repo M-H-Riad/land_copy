@@ -159,7 +159,7 @@
               </div>
           </div>
           <div class="form-group col-md-12">
-              <label for="area_id" class="col-md-3 control-label">গন্তব্য<span style="color:red">*</span></label>
+              <label for="area_id" class="col-md-3 control-label">মন্তব্য<span style="color:red">*</span></label>
               <div class="col-md-5">
                   <input type="text" class="form-control" name="destination">
               </div>

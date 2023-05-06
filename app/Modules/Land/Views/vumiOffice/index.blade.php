@@ -41,7 +41,7 @@
                                     <td>{{$vumiOffice->office_name or ''}}</td>
                                     <td>{{$vumiOffice->address or ''}}</td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="btn-group action_buttons_style" style="gap:4px;">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ url('land/vumi_office/'.$vumiOffice->id.'/edit') }}">
                                                 <i class="fa fa-edit"></i> Edit

@@ -46,7 +46,7 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="action_buttons_style">
                                         <button data-toggle="modal" data-target="#edit-land_zila-modal-{{$zila->id}}"
                                                 class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>
                                         @include('Land::zila.edit')

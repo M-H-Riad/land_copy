@@ -51,7 +51,7 @@
                                     <td>{{$khajnaOffice->total_bokeya or ''}}</td>
                                     <td>{{$khajnaOffice->from_year or '-'}} <?php echo " -- "; ?> {{ $khajnaOffice->to_year or '-' }}</td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="btn-group action_buttons_style" style="gap:4px;">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ url('land/khajna-office/'.$khajnaOffice->id.'/edit') }}">
                                                 <i class="fa fa-edit"></i> Edit

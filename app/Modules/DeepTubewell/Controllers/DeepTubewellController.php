@@ -9,12 +9,16 @@ use App\Modules\DeepTubewell\Models\DeepTubewellSource;
 use App\Modules\DeepTubewell\Models\DeepTubewellSourceType;
 use App\Modules\Land\Models\Zone;
 use File;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Validation\Rule;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
+use Mpdf\Mpdf;
 
 class DeepTubewellController extends Controller
 {
@@ -398,6 +402,130 @@ class DeepTubewellController extends Controller
         $source = DeepTubewellSource::where('title', 'like', '%' . $request->source . '%')->get()->toArray();
         $data['sources']= $source;
         echo json_encode($data);
+    }
+
+    public function single_pdf($id)
+    {
+        $deepTubewell      = DeepTubewell::findOrFail($id);
+
+        ini_set('memory_limit', '3072M');
+        set_time_limit(300);
+
+        $html               = view("DeepTubewell::deep-tubewell.single_export_pdf", compact('deepTubewell'));
+
+        $defaultConfig      = (new ConfigVariables())->getDefaults();
+        $fontDirs           = $defaultConfig['fontDir'];
+        $defaultFontConfig  = (new FontVariables())->getDefaults();
+        $fontData           = $defaultFontConfig['fontdata'];
+
+        $mpdf               = new mPDF([
+            'pagenumPrefix' => 'Page ',
+            'nbpgPrefix'    => ' of ',
+            'nbpgSuffix'    => '',
+            'margin_top'    => '45',
+            'tempDir'       => storage_path(),
+            'mode'          => 'utf-8',
+            'format'        => 'A4',
+            'fontDir'       => array_merge($fontDirs, [
+                public_path('fonts'),
+            ]),
+            'fontdata'      => $fontData + [
+                    'solaimanlipi'  => [
+                        'R'         => "SolaimanLipi.ttf",
+                        'useOTL'    => 0xFF,
+                    ],
+                ],
+            'default_font'  => 'solaimanlipi'
+        ]);
+
+        $title              = "deep-tubewell Details - " . date('Y-m-d H:i:s') . '.pdf';
+        $mpdf->SetProtection(array('print'));
+        $mpdf->SetTitle($title);
+        $mpdf->SetAuthor("SSL Wireless");
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->SetHtmlHeader(view('DeepTubewell::deep-tubewell.pdf_header'));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($title, 'I');
+        exit;
+    }
+
+    public function pdf(Request $request)
+    {
+
+        $title              = "deep-tubewell List Report - " . date('Y-m-d H:i:s') . '.pdf';
+        $data['deep_tubewells']      = $this->__filter($request)->get();
+        
+        if(isset($request->zone_id))
+        {
+            $zone           = Zone::where('id',$request->zone_id)->select('title')->first();
+            $data['zone']   =  $zone;
+            $title          = $zone->title." - deep-tubewell List Report - " . date('Y-m-d H:i:s') . '.pdf';
+
+        }
+        ini_set('memory_limit', '3072M');
+        set_time_limit(300);
+        $html               = view("DeepTubewell::deep-tubewell.export_pdf", $data);
+
+        $defaultConfig      = (new ConfigVariables())->getDefaults();
+        $fontDirs           = $defaultConfig['fontDir'];
+        $defaultFontConfig  = (new FontVariables())->getDefaults();
+        $fontData           = $defaultFontConfig['fontdata'];
+
+        $mpdf               = new mPDF([
+            'pagenumPrefix' => 'Page ',
+            'nbpgPrefix'    => ' of ',
+            'nbpgSuffix'    => '',
+            'margin_top'    => '45',
+            'tempDir'       => storage_path(),
+            'mode'          => 'utf-8',
+            'format'        => 'A4-L',
+            'fontDir'       => array_merge($fontDirs, [
+                public_path('fonts'),
+            ]),
+            'fontdata'      => $fontData + [
+                    'solaimanlipi'  => [
+                        'R'         => "SolaimanLipi.ttf",
+                        'useOTL'    => 0xFF,
+                    ],
+                ],
+            'default_font'  => 'solaimanlipi'
+        ]);
+
+        $mpdf->SetProtection(array('print'));
+
+        $mpdf->SetTitle($title);
+        $mpdf->SetAuthor("SSL Wireless");
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->SetHtmlHeader(view('DeepTubewell::deep-tubewell.pdf_header',$data));
+        $mpdf->SetHtmlFooter(view('DeepTubewell::deep-tubewell.pdf_footer',$data));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($title, 'I');
+        exit;
+    }
+
+    public function export(Request $request)
+    {
+        $result         = $this->__filter($request)->get();
+
+        $data           = [];
+        foreach ($result as $row) {
+            $dataArray  = [
+                'zone'      => $row->zone->title,
+                'sourceType'=> $row->sourceType->title,
+                'source'    => $row->sources->title,
+            ];
+            $data[]         = array_merge($dataArray, $row->only([
+                'onumoti_chukti_boraddo', 'onumoti_chukti_boraddo_date', 'dokholpotro_date', 'deep_tubewell_place_name', 'khotiyan_no', 'dag_no', 'jomir_poriman', 'destination',
+            ]));
+        }
+
+        Excel::create('Deep-tubewell List', function ($excel) use ($data) {
+            $excel->sheet('Deep-tubewell List', function ($sheet) use ($data) {
+                $sheet->setOrientation('landscape');
+                $sheet->fromArray($data);
+            });
+        })->export('xls');
+
     }
 
     
