@@ -1,7 +1,7 @@
 @extends('main_layouts.app')
 
 @section('content')
-@include('errorOrSuccess')
+
 <!-- BEGIN PAGE BREADCRUMB -->
 <ul class="page-breadcrumb breadcrumb">
   <li>
@@ -16,91 +16,206 @@
     <span class="active">Update</span>
   </li>
 </ul>
+@if (session('error'))
+<div class="alert alert-danger">
+    <p>{{session('error')}}</p>
+</div>
+@endif
 <!-- END PAGE BREADCRUMB -->
 
-<div class="row animated zoomIn">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+          <div class="panel-heading">Update User Information</div>
 
-  {{--{!! Form::model($user, array('url' => 'role-user/'.$user->id, 'method' => 'put')) !!}--}}
+          <div class="panel-body">
+              <form class="form-horizontal" method="POST" action="{{ route('update-user',$user->id)}}">
+                  {{ csrf_field() }}
 
-  {!! Form::model($user, ['method' => 'PATCH', 'route'=> ['update-user', $user->id],'id'=>'user-jq-validation-form']) !!}
-  {!! Form::hidden('id', $user->id) !!}
+                  <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                      <label for="first_name" class="col-md-4 control-label">First Name (Eng)*</label>
 
-  <div class="col-md-12">
-    <!-- BEGIN EXAMPLE TABLE PORTLET-->
-    <div class="portlet light bordered">
-      <div class="portlet-title">
-        <div class="caption font-green">
-          <!-- <i class="icon-settings font-green"></i> -->
-          <span class="caption-subject bold uppercase">{{ $title }}</span>
-        </div>
-        <div class="tools"> </div>
+                      <div class="col-md-6">
+                          <input id="first_name" type="text" class="form-control" name="first_name" value="{{ $user->first_name_eng}}"  autofocus>
+
+                          @if ($errors->has('first_name'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('first_name') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                      <label for="last_name" class="col-md-4 control-label">Last Name (Eng)*</label>
+
+                      <div class="col-md-6">
+                          <input id="last_name" type="text" class="form-control" name="last_name" value="{{ $user->last_name_eng}}" autofocus>
+
+                          @if ($errors->has('last_name'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('last_name') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('first_name_ban') ? ' has-error' : '' }}">
+                      <label for="first_name_ban" class="col-md-4 control-label">First Name (Ban)</label>
+
+                      <div class="col-md-6">
+                          <input id="first_name_ban" type="text" class="form-control" name="first_name_ban" value="{{ $user->first_name_ban}}"  autofocus>
+
+                          @if ($errors->has('first_name_ban'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('first_name_ban') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('last_name_ban') ? ' has-error' : '' }}">
+                      <label for="last_name_ban" class="col-md-4 control-label">Last Name (Bng)</label>
+
+                      <div class="col-md-6">
+                          <input id="last_name_ban" type="text" class="form-control" name="last_name_ban" value="{{ $user->last_name_ban}}"  autofocus>
+
+                          @if ($errors->has('last_name_ban'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('last_name_ban') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('pf_no') ? ' has-error' : '' }}">
+                      <label for="pf_no" class="col-md-4 control-label">PF No</label>
+
+                      <div class="col-md-6">
+                          <input id="pf_no" type="text" class="form-control" name="pf_no" value="{{$user->pf_no}}" autofocus>
+
+                          @if ($errors->has('pf_no'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('pf_no') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
+                      <label for="office_id" class="col-md-4 control-label">Office Id *</label>
+
+                      <div class="col-md-6">
+                          <input id="office_id" type="text" class="form-control" name="office_id" value="{{$user->office_id}}" autofocus>
+
+                          @if ($errors->has('office_id'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('office_id') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
+                    <label for="department_id" class="col-md-4 control-label">Department *</label>
+
+                    <div class="col-md-6">
+                        <select name="department_id" class="form-control select2">
+                            <option value="">---Select a department---</option>
+                             @foreach($departments as $department)
+                                <option value="{{$department->id}}" {{($user->department_id == $department->id)?'selected':''}}>{{$department->department_name}}</option>
+                             @endforeach
+                        </select>
+
+                        @if ($errors->has('department_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('department_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                  <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                      <label for="department_id" class="col-md-4 control-label">Phone *</label>
+
+                      <div class="col-md-6">
+                          <input id="phone" type="text" class="form-control" name="phone" value="{{$user->phone}}" autofocus>
+
+                          @if ($errors->has('phone'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('phone') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('designation_id') ? ' has-error' : '' }}">
+                    <label for="designation_id" class="col-md-4 control-label">Designation *</label>
+
+                    <div class="col-md-6">
+                        <select name="designation_id" class="form-control select2">
+                            <option value="">---Select a designation---</option>
+                            @foreach($designations as $designation)
+                                <option value="{{$designation->id}}" {{($user->designation_id == $designation->id)?'selected':''}}>{{$designation->title}}</option>
+                             @endforeach
+                        </select>
+
+                        @if($errors->has('designation_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('designation_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                      <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                      <div class="col-md-6">
+                          <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}">
+
+                          @if ($errors->has('email'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                      <label for="pswd" class="col-md-4 control-label">Password</label>
+
+                      <div class="col-md-6">
+                          <input id="pswd" type="password" class="form-control" name="password">
+                          <span id="password_error" class="text-danger"></span>
+                          @if ($errors->has('password'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                      <div class="col-md-6">
+                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-md-6 col-md-offset-4">
+                          <button type="submit" class="btn btn-primary" id="form_submit">
+                              Update
+                          </button>
+                      </div>
+                  </div>
+              </form>
+          </div>
       </div>
-      <div class="portlet-body">
-
-        @include('errors.validation')
-
-        <div class="col-md-3"></div>
-
-        <div class="col-md-6">
-
-
-          <div class="form-group">
-            {!! Form::label('name', 'User Full Name:', ['class' => 'form-label']) !!}
-            <label class="required">(*)</label>
-            {!! Form::text('name',$user->name,['class' => 'form-control','placeholder'=>'User Name','required','autofocus', 'title'=>'Enter User Name']) !!}
-          </div>
-
-          <div class="form-group">
-            {!! Form::label('email', 'Email:', ['class' => 'form-label']) !!}
-            <label class="required">(*)</label>
-            {!! Form::text('email',$user->email,['class' => 'form-control','placeholder'=>'User Email','required','autofocus', 'title'=>'Enter User Email']) !!}
-          </div>
-
-          <div class="form-group">
-            {!! Form::label('user_name', 'User Name:', ['class' => 'form-label']) !!}
-            <label class="required">(*)</label>
-            {!! Form::text('user_name',$user->user_name,['class' => 'form-control','placeholder'=>'User Name','required','autofocus', 'title'=>'Enter User Name']) !!}
-          </div>
-
-          <div class="form-group">
-            {!! Form::label('password', 'User Password:', ['class' => 'form-label']) !!}
-            <label class="required">(*)</label>
-            {!! Form::password('password',['class' => 'form-control','placeholder'=>'User Password','required','autofocus', 'title'=>'Enter User Password']) !!}
-          </div>
-
-      </div>
-
-      <div class="col-md-6">
-
-        <div class="col-md-3"></div>
-
-
-
-        <div class="col-md-3"></div>
-
-        <div class="col-md-6" style="margin-top: 10px;">
-
-
-
-          <button type="submit" class="btn green pull-right mt-ladda-btn ladda-button" data-style="zoom-in">
-            <span class="ladda-label">
-              <i class="icon-arrow-right"></i> Update
-            </span>
-          </button>
-
-        </div>
-
-        <div class="col-md-3"></div>
-
-      </div>
-
-    </div>
-
-{{ Form::close() }}
-
   </div>
 </div>
-
 <script type="text/javascript">
 
   $('.parent_menu_checkbox').change(function() {

@@ -108,18 +108,18 @@ License: You must have a valid license purchased only from themeforest(the above
             {{-- <h3 class="form-title">Login to your account</h3> --}}
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
-                 <span> Enter any username and password. </span>
+                 <span> Enter any OfficeId and password. </span>
             </div>
             @include('errorOrSuccess')
             @if(session('status'))
                 <p class="alert alert-success">{{ session('status') }}</p>
             @endif
-            <div class="form-group {{ $errors->has('user_name') ? ' has-error' : '' }}">
+            <div class="form-group {{ $errors->has('office_id') ? ' has-error' : '' }}">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
+                <label class="control-label visible-ie8 visible-ie9">Office Id</label>
                 <div class="input-icon">
                     <i class="fa fa-user"></i>
-                    <input autocomplete="off" id="user_name" type="text" class="form-control placeholder-no-fix" name="user_name" value="{{ old('user_name') }}">
+                    <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}">
                 </div>
             </div>
             <div class="form-group">

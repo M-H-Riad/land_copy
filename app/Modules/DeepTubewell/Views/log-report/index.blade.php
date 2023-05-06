@@ -26,7 +26,7 @@
 							<th style="padding: 8px !important;">Manu Name</th>
 							<th style="padding: 8px !important;">Operation</th>
 							<th style="padding: 8px !important;">Status</th>
-							<th style="padding: 8px !important;">Action</th>
+							{{-- <th style="padding: 8px !important;">Action</th> --}}
 						</tr>
 					</thead>
 					<tbody>
@@ -41,8 +41,6 @@
 									Insert
 									@elseif($loginfo->operation == 2)
 									Update
-									@elseif($loginfo->operation == 3)
-									Delete
 									@endif
 								</td>
 								<td>
@@ -54,9 +52,9 @@
 									N/A
 									@endif
 								</td>
-								<td>
+								{{-- <td>
 									 <a href="{{ route('log.destroy',$loginfo->id)}}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-							    </td>
+							    </td> --}}
 							</tr>
 						@endforeach
 					</tbody>

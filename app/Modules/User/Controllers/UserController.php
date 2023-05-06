@@ -47,27 +47,58 @@ class UserController extends Controller {
     {
         //echo $id;die;
         $title = 'Update User Information';
-        $user = User::findOrFail( $id );
-        //print_r($user);die;
-        return view('User::user.edit', compact('user','title'));
+        $user = User::findOrFail($id);
+                
+        $departments = DB::table('departments')->get();
+        $designations = DB::table('designations')->get();
+        //dd($user);
+        return view('User::user.edit', compact('user','title','departments','designations'));
     }
 
 
 
     public function update_user($id, Request $request)
     {
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'department_id' => 'required',
+            'phone' => 'required',
+            'designation_id' => 'required',
+            'email'     => 'required|string|email|max:255',
+            'office_id'     => 'required',
+            'password'  => 'nullable|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            
+        ]);
+
         $user            = User::findOrFail($id);
 
-        //echo $id;
-       // print_r($user);
-        //die;
+        if ($request->office_id != $user->office_id) {
+            $office_id_check = User::where('office_id',$request->office_id)->first();
+            if (!empty($office_id_check)) return redirect()->back()->with('error', 'This Office Id Number is already exist');
+        }
 
-        $user->name        = $request['name'];
+        if ($request->email != $user->email) {
+            $email_check = User::where('email',$request->email)->first();
+            if (!empty($email_check)) return redirect()->back()->with('error', 'This email is already exist');
+        }
+
+       
+        $user->name        = $request['first_name'].' '.$request['last_name'];
+        $user->full_name   = $request['first_name'].' '.$request['last_name'];
+        $user->full_name_ban =  $request['first_name_ban'].' '.$request['last_name_ban'];
+        $user->first_name_eng = $request['first_name'];
+        $user->last_name_eng = $request['last_name'];
+        $user->first_name_ban = $request['first_name_ban'];
+        $user->last_name_ban = $request['last_name_ban'];
+        $user->pf_no = $request['pf_no'];
+        $user->office_id = $request['office_id'];
+        $user->department_id = $request['department_id'];
+        $user->phone = $request['phone'];
+        $user->designation_id = $request['designation_id'];
         $user->email       = $request['email'];
-        $user->user_name   = $request['user_name'];
         $user->password    = bcrypt($request['password']);
         $user->save();
-
 
         Session::flash('success','Successfully updated');
         return redirect()->route('user-list');
@@ -225,10 +256,13 @@ class UserController extends Controller {
     public function register_create(Request $request)
     {
         $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
             'department_id' => 'required',
             'phone' => 'required',
             'designation_id' => 'required',
             'email'     => 'required|string|email|max:255|unique:users',
+            'office_id'     => 'required|unique:users',
             'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
             
         ]);
@@ -237,6 +271,10 @@ class UserController extends Controller {
             'full_name' => $request['first_name'].' '.$request['last_name'],
             'name' => $request['first_name'].' '.$request['last_name'],
             'full_name_ban' => $request['first_name_ban'].' '.$request['last_name_ban'],
+            'first_name_eng' => $request['first_name'],
+            'last_name_eng' => $request['last_name'],
+            'first_name_ban' => $request['first_name_ban'],
+            'last_name_ban' => $request['last_name_ban'],
             'pf_no' => $request['pf_no'],
             'office_id' => $request['office_id'],
             'department_id' => $request['department_id'],
