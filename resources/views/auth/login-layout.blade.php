@@ -101,6 +101,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
             </div>
+            <h2 style="color:white;text-align:center;font-weight:bold;">{{config('app.name')}}</h2>
 
             @if(session('success_new'))
                     <p class="alert alert-success">{{ session('success_new') }}</p>

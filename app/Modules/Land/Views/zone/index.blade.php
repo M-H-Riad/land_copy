@@ -26,8 +26,9 @@
                         <tr>
                             <th style="padding: 8px !important;">ক্রমিক নং</th>
                             <th style="padding: 8px !important;">Zone name</th>
-                            <th style="padding: 8px !important;">Order</th>
                             <th style="padding: 8px !important;">Status</th>
+                            <th style="padding: 8px !important;">Order</th>
+                            
                             <th style="padding: 8px !important;">Action</th>
                         </tr>
                         </thead>

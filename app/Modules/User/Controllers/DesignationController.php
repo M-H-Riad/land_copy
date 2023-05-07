@@ -23,9 +23,10 @@ class DesignationController extends Controller {
 	 *
 	 * @return Response 
 	 */
-    public function index()
+    public function index(Request $request)
     {
         $query      = Designation::query();
+        // echo $request->title.'sdsds';die();
         ($request->title ? $query->where('title', 'like', '%' . $request->title . '%') : null);
         // ($request->filled('status') ? $query->where('status', $request->status) : null);
         $designations  = $query->orderBy('title', 'ASC')->paginate(10);
