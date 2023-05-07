@@ -1082,18 +1082,25 @@
                     <h3 class="uppercase">User Management</h3>
                 </li>
 
-                <li class="nav-item users">
-                    <!-- <a href="{{ URL::to('/user/designation') }}" class="nav-link nav-toggle">
+                <li class="nav-item designation">
+                    <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-user-secret"></i>
-                        <span class="title">Designation</span>
+                        <span class="title">Dept & Designation</span>
                         <span class="arrow"></span>
                     </a>
-                    <a href="{{ URL::to('/user/department') }}" class="nav-link nav-toggle">
-                        <i class="fa fa-user-secret"></i>
-                        <span class="title">Department</span>
-                        <span class="arrow"></span>
-                    </a> -->
+                    <ul class="sub-menu">
+                        <li class="nav-item role_create">
+                            <a href="{{ URL::to('designation') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Designation</span>
+                            </a>
+                        </li>
 
+                    </ul>
+                </li>
+
+                <li class="nav-item users">
+                    
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-user-secret"></i>
                         <span class="title">Users</span>

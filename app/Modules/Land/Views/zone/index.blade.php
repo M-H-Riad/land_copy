@@ -26,6 +26,7 @@
                         <tr>
                             <th style="padding: 8px !important;">ক্রমিক নং</th>
                             <th style="padding: 8px !important;">Zone name</th>
+                            <th style="padding: 8px !important;">Order</th>
                             <th style="padding: 8px !important;">Status</th>
                             <th style="padding: 8px !important;">Action</th>
                         </tr>
@@ -46,6 +47,7 @@
                                             N/A
                                         @endif
                                     </td>
+                                    <td>{{$zone->ordering or ''}}</td>
                                     <td class="action_buttons_style">
                                         <button data-toggle="modal" data-target="#edit-land_zone-modal-{{$zone->id}}"
                                                 class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>

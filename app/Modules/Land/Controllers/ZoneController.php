@@ -52,6 +52,7 @@ class ZoneController extends Controller
 
         $data = [
             'title'     => $request->title,
+            'ordering'     => $request->ordering,
             'status'    => 1
         ];
 

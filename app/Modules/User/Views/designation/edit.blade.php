@@ -1,22 +1,18 @@
-<div id="edit-land_zone-modal-{{$zone->id}}" class="modal fade" role="dialog" aria-hidden="true">
+<div id="edit-designation-modal-{{$designation->id}}" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {!! Form::model($zone, ['url' => 'land/zone/'.$zone->id, 'method' => 'put']) !!}
+      {!! Form::model($designation, ['url' => 'designation/'.$designation->id, 'method' => 'put']) !!}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-        <h4 class="modal-title">Update Land Zone</h4>
+        <h4 class="modal-title">Update Source Type</h4>
       </div>
       <div class="modal-body">
         <table class="table table-bordered table-hover dt-responsive" class="nopagination" width="100%">
 
           <tbody>
             <tr>
-              <th style="width: 50%;">Zone Name</th>
-              <td>{{ Form::text("title", null, ["class" => "form-control focus_it"]) }}</td>
-            </tr>
-            <tr>
-              <th style="width: 50%;">Order</th>
-              <td>{{ Form::text("ordering", null, ["class" => "form-control focus_it"]) }}</td>
+              <th style="width: 50%;">Source Title</th>
+              <td>{{ Form::text("title", $designation->title, ["class" => "form-control focus_it"]) }}</td>
             </tr>
             <tr>
               <th style="width: 50%;">Status</th>

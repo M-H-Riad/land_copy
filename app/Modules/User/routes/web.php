@@ -28,7 +28,7 @@ Route::group(['module' => 'User', 'middleware' => ['web', 'auth','auditTrails'],
     Route::post('register-create', ['as' => 'register-create', 'uses' => 'UserController@register_create']);
 
     Route::resource('designation', 'DesignationController');
-    Route::resource('department', 'DepartmentController');
+    
  
 });
 
