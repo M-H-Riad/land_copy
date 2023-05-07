@@ -1089,13 +1089,18 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="nav-item role_create">
+                        <li class="nav-item designation">
                             <a href="{{ URL::to('designation') }}" class="nav-link ">
                                 <i class="fa fa-paper-plane-o"></i>
                                 <span class="title">Designation</span>
                             </a>
                         </li>
-
+                        <li class="nav-item department">
+                            <a href="{{ URL::to('department') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Department</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
