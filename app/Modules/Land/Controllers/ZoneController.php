@@ -23,7 +23,7 @@ class ZoneController extends Controller
         $query      = Zone::query();
         ($request->title ? $query->where('title', 'like', '%' . $request->title . '%') : null);
         ($request->filled('status') ? $query->where('status', $request->status) : null);
-        $zones      = $query->orderBy('title', 'ASC')->paginate(10);
+        $zones      = $query->orderBy('ordering', 'ASC')->paginate(10);
         return view('Land::zone.index', compact('zones'));
     }
 
@@ -47,7 +47,8 @@ class ZoneController extends Controller
     {
     
         $this->validate($request, [
-            'title'     => 'required|unique:land_zones,title'
+            'title'     => 'required|unique:land_zones,title',
+            'ordering'     => 'required|unique:land_zones,ordering',
         ]);
 
         $data = [
@@ -110,6 +111,7 @@ class ZoneController extends Controller
     {
         $this->validate($request, [
             'title'     => 'required|unique:land_zones,title,' . $id,
+            'ordering'     => 'required|unique:land_zones,ordering,' . $id,
             'status'    => 'required|boolean',
         ]);
 
