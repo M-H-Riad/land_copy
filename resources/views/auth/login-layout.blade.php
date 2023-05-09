@@ -123,14 +123,14 @@ License: You must have a valid license purchased only from themeforest(the above
                 <label class="control-label visible-ie8 visible-ie9">Office Id</label>
                 <div class="input-icon">
                     <i class="fa fa-user"></i>
-                    <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}">
+                    <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">Password</label>
                 <div class="input-icon">
                     <i class="fa fa-lock"></i>
-                    <input autocomplete="off" id="password" type="password" class="form-control placeholder-no-fix" name="password">
+                    <input autocomplete="off" id="password" type="password" class="form-control placeholder-no-fix" name="password" placeholder="Enter Password">
                 </div>
             </div>
             <div class="form-actions" style="padding-bottom: 0px;">

@@ -5,7 +5,7 @@
     .help-block{
         color:red !important;
     }
-    .text-dangerm{
+    .text-danger{
         color:red !important;
     }
     .has-error .control-label{
@@ -23,7 +23,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                            <label for="first_name" class="col-md-4 control-label">First Name (Eng)*</label>
+                            <label for="first_name" class="col-md-4 control-label">First Name (Eng) <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}"  autofocus>
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                            <label for="last_name" class="col-md-4 control-label">Last Name (Eng)*</label>
+                            <label for="last_name" class="col-md-4 control-label">Last Name (Eng) <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" autofocus>
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }}">
-                            <label for="office_id" class="col-md-4 control-label">Office Id *</label>
+                            <label for="office_id" class="col-md-4 control-label">Office Id <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="office_id" type="text" class="form-control" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID" autofocus>
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
-                            <label for="department_id" class="col-md-4 control-label">Department *</label>
+                            <label for="department_id" class="col-md-4 control-label">Department <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <select name="department_id" class="form-control select2">
@@ -126,7 +126,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                            <label for="department_id" class="col-md-4 control-label">Phone *</label>
+                            <label for="department_id" class="col-md-4 control-label">Phone <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" autofocus>
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('designation_id') ? ' has-error' : '' }}">
-                            <label for="designation_id" class="col-md-4 control-label">Designation *</label>
+                            <label for="designation_id" class="col-md-4 control-label">Designation <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <select name="designation_id" class="form-control select2">
@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -173,7 +173,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="pswd" class="col-md-4 control-label">Password</label>
+                            <label for="pswd" class="col-md-4 control-label">Password <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="pswd" type="password" class="form-control" placeholder="Enter Password" name="password">
@@ -183,11 +183,12 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+                                
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
