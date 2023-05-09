@@ -70,6 +70,9 @@ License: You must have a valid license purchased only from themeforest(the above
             -moz-border-radius: 50% !important;
             border-radius: 50% !important;
         }
+        .content{
+            width:675px !important;
+        }
     </style>
 
 </head>

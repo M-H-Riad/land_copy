@@ -263,7 +263,7 @@ class UserController extends Controller {
             'designation_id' => 'required',
             'email'     => 'required|string|email|max:255|unique:users',
             'office_id'     => 'required|unique:users',
-            'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/|regex:/[@$!%*#?&]/',
             
         ]);
         $remember_token=Str::random(60);

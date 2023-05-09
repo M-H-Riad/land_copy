@@ -1,6 +1,17 @@
 @extends('layouts.app_new')
 
 @section('content')
+<style>
+    .help-block{
+        color:red !important;
+    }
+    .text-dangerm{
+        color:red !important;
+    }
+    .has-error .control-label{
+        color:red !important;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -8,7 +19,7 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register-create') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('register-create') }}" id="user_entry">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -85,7 +96,7 @@
                             <label for="office_id" class="col-md-4 control-label">Office Id *</label>
 
                             <div class="col-md-6">
-                                <input id="office_id" type="text" class="form-control" name="office_id" value="{{ old('office_id') }}" autofocus>
+                                <input id="office_id" type="text" class="form-control" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID" autofocus>
 
                                 @if ($errors->has('office_id'))
                                     <span class="help-block">
@@ -165,7 +176,7 @@
                             <label for="pswd" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="pswd" type="password" class="form-control" name="password">
+                                <input id="pswd" type="password" class="form-control" placeholder="Enter Password" name="password">
                                 <span id="password_error" class="text-danger"></span>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -180,12 +191,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <span id="password_match" style="display:none;color:red;">Password and confirm password Didn't match !!</span>
                             </div>
                         </div>
+                        
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary" id="form_submit">
+                                <button type="button" class="btn btn-primary" id="form_submit">
                                     Register
                                 </button>
                             </div>
@@ -201,7 +214,19 @@
 <script> 
 
      $('#pswd').keyup(function(e){
-            $("#password_error").html("Please give at least six length Password. Atleast One upper case and one lower case letter and one number"); 
-     })
+        $("#password_error").html("Please give at least six length Password. Atleast One upper case and one lower case letter and one number"); 
+     });
+     $('#form_submit').click(function(){
+         var password = $('#pswd').val();
+         var confirm_password = $('#password-confirm').val();
+         if(password==confirm_password){
+            $('#password_match').hide();
+            $("#user_entry").submit();
+         }else{
+             $('#password_match').show();
+         }
+     });
+
+
 </script>
 @endsection
