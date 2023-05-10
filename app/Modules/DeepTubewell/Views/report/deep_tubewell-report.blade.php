@@ -40,16 +40,17 @@
                 {{Form::model($_REQUEST,['method'=>'get','form-horizontal','role'=>'form'])}}
                 <div class="col-md-12 side-padding-none">
                     <div class="col-md-3" style="margin-bottom:5px;">
-                    {!! Form::select('zone_id', $zones, 1, ['class' => 'form-control select2', 'style' => 'width:100%']) !!}
+                    {!! Form::select('zone_id', $zones, null, ['class' => 'form-control select2', 'placeholder' => 'জোন', 'style' => 'width:100%']) !!}
                     </div>
                     <div class="col-md-3" style="margin-bottom:5px;">
-                    {!! Form::select('area_id', $areas, 1, ['class' => 'form-control select2', 'style' => 'width:100%']) !!}
+                    {!! Form::select('area_id', $areas, null, ['class' => 'form-control select2', 'placeholder' => 'মৌজা', 'style' => 'width:100%']) !!}
                     </div>
                     <div class="col-md-3" style="margin-bottom:5px;">
-                    {!! Form::select('deep_source_type_id', $deep_source_types, 1, ['class' => 'form-control select2', 'style' => 'width:100%']) !!}
+                    {!! Form::select('deep_source_type_id', $deep_source_types, null, ['class' => 'form-control select2', 'placeholder' => 'উৎসের ধরন', 'style' => 'width:100%']) !!}
                     </div>
                     <div class="col-md-3" style="margin-bottom:5px;">
                         <select class="form-control select2" style="width:100%" name="onumoti_chukti_boraddo">
+                            <option value="">অনুমতি/চুক্তি/বরাদ্দ</option>
                             <option value="1">অনুমতি</option>
                             <option value="2">চুক্তি</option>
                             <option value="3">বরাদ্দ</option>
