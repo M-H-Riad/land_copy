@@ -106,46 +106,50 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <h2 style="color:white;text-align:center;font-weight:bold;">{{config('app.name')}}</h2>
 
-            @if(session('success_new'))
-                    <p class="alert alert-success">{{ session('success_new') }}</p>
-            @endif
-            {{-- <h3 class="form-title">Login to your account</h3> --}}
-            <div class="alert alert-danger display-hide">
-                <button class="close" data-close="alert"></button>
-                 <span> Enter any OfficeId and password. </span>
-            </div>
-            @include('errorOrSuccess')
-            @if(session('status'))
-                <p class="alert alert-success">{{ session('status') }}</p>
-            @endif
-            <div class="form-group {{ $errors->has('office_id') ? ' has-error' : '' }}">
-                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Office Id</label>
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID">
+            <div style="width:375px;margin: auto;">
+                @if(session('success_new'))
+                        <p class="alert alert-success">{{ session('success_new') }}</p>
+                @endif
+                {{-- <h3 class="form-title">Login to your account</h3> --}}
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button>
+                    <span> Enter any OfficeId and password. </span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
-                <div class="input-icon">
-                    <i class="fa fa-lock"></i>
-                    <input autocomplete="off" id="password" type="password" class="form-control placeholder-no-fix" name="password" placeholder="Enter Password">
+                @include('errorOrSuccess')
+                @if(session('status'))
+                    <p class="alert alert-success">{{ session('status') }}</p>
+                @endif
+                <div class="form-group {{ $errors->has('office_id') ? ' has-error' : '' }}">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Office Id</label>
+                    <div class="input-icon">
+                        <i class="fa fa-user"></i>
+                        <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID">
+                    </div>
                 </div>
-            </div>
-            <div class="form-actions" style="padding-bottom: 0px;">
-                <label class="rememberme mt-checkbox mt-checkbox-outline">
-                    <input type="checkbox" name="remember" value="1" /> Remember me
-                    <span></span>
-                </label>
-                <button type="submit" class="btn green pull-right"> Login </button>
-            </div>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <div class="input-icon">
+                        <i class="fa fa-lock"></i>
+                        <input autocomplete="off" id="password" type="password" class="form-control placeholder-no-fix" name="password" placeholder="Enter Password">
+                    </div>
+                </div>
+                <div class="form-actions" style="padding-bottom: 0px;">
+                    <label class="rememberme mt-checkbox mt-checkbox-outline">
+                        <input type="checkbox" name="remember" value="1" /> Remember me
+                        <span></span>
+                    </label>
+                    <button type="submit" class="btn green pull-right"> Login </button>
+                </div>
 
-            <div class="forget-password">
-                <h4>Forgot your password ?</h4>
-                <p>Click
-                    <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
+                <div class="forget-password">
+                    <h4>Forgot your password ?</h4>
+                    <p>Click
+                        <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
+                </div>
+
             </div>
+            
         </form>
         <!-- END LOGIN FORM -->
         <!-- BEGIN FORGOT PASSWORD FORM -->
