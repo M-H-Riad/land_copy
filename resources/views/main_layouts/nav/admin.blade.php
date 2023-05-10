@@ -1058,6 +1058,17 @@
                         <span class="title">লগ রিপোর্ট</span>
                     </a>
                 </li>
+
+
+                <li class="heading">
+                    <h3 class="uppercase">Deep Tubewell Reports</h3>
+                </li>
+                <li class="nav-item deep_tubewell_source">
+                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell-report') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">Land wise deep-tubewell report</span>
+                    </a>
+                </li>
                 <!-- End DeepTubewell -->
             @endif
 

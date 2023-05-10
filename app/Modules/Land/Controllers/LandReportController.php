@@ -12,7 +12,7 @@ use App\Modules\Land\Models\Namjari;
 use App\Modules\Land\Models\Zone;
 use App\Modules\Land\Models\Area;
 use Mpdf\Config\ConfigVariables;
-use Mpdf\Config\FontVariables;
+use Mpdf\Config\FontVariables; 
 use Mpdf\Mpdf;
 use DB;
 
@@ -705,7 +705,7 @@ class LandReportController extends Controller
             'nbpgPrefix'    => ' of ',
             'nbpgSuffix'    => '',
             'margin_top'    => '45',
-            'tempDir'       => storage_path(),
+            'tempDir'       => storage_path(), 
             'mode'          => 'utf-8',
             'format'        => 'A4-L',
             'fontDir'       => array_merge($fontDirs, [

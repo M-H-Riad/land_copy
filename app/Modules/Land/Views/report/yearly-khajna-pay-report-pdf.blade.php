@@ -18,7 +18,7 @@
         width: 100%;
         margin: 0 auto;
         border-collapse: collapse;
-    }
+    } 
     table tr{
         margin-top: 5px;
     }

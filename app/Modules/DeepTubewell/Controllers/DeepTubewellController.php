@@ -377,20 +377,7 @@ class DeepTubewellController extends Controller
         }
         $getDeeptubewell   = DeepTubewell::where($query);
         ($request->deep_tubewell_place_name ? $getDeeptubewell->where('deep_tubewell_place_name', 'like', '%' . $request->deep_tubewell_place_name . '%') : null);
-        // ($request->ownership_details ? $landQuery->where('ownership_details', 'like', '%' . $request->ownership_details . '%') : null);
-        // (($request->filled('quantity') and $request->quantity_sign) ? $landQuery->where('quantity', "$request->quantity_sign", $request->quantity) : null);
-        // ($request->current_status ? $landQuery->where('current_status', $request->current_status) : null);
-        // ($request->khajna ? $landQuery->where('khajna', $request->khajna) : null);
-        // ($request->namjari ? $landQuery->where('namjari', $request->namjari) : null);
-        // ($request->comment ? $landQuery->where('comment', 'like', '%' . $request->comment . '%') : null);
-        // ($request->filled('status') ? $landQuery->where('status', $request->status) : null);
-
-        // if ($request->address != null) {
-        //     $getDeeptubewell->where('address', 'like', "%{$request->address}%");
-        // }
-        // if ($request->khotian != null) {
-        //     $getDeeptubewell->where('khotian', 'like', "%{$request->khotian}%");
-        // }
+        
         
         $getDeeptubewell->orderBy('created_at', 'DESC');
         

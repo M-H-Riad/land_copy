@@ -16,7 +16,7 @@ Route::group(['module' => 'Land', 'prefix' => 'land', 'middleware' => ['web', 'a
     Route::resource('source', 'LandSourceController');
     Route::resource('propertytype', 'PropertyTypeController');
     Route::resource('property', 'PropertyController');
-
+ 
     //Zila routes....
     Route::any('zila', 'ZilaController@index');
     Route::any('zila-store', 'ZilaController@store');

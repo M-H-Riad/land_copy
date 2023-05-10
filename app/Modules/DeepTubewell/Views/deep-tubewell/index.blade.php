@@ -66,8 +66,8 @@
                                     <td>{{$deepTubewell->dokholpotro_date}}</td>
                                     <td>{{$deepTubewell->deep_tubewell_place_name}}</td>
                                     <td>{{$deepTubewell->khotiyan_no}}</td>
-                                    <td>{{$deepTubewell->dag_no}}</td>
-                                    <td>{{$deepTubewell->jomir_poriman}}</td>
+                                    <td>{{$deepTubewell->dag_no}}</td> 
+                                    <td>{{$deepTubewell->jomir_poriman}} একর</td>
                                     <td>{{$deepTubewell->destination}}</td> 
                                     <td class="action_buttons_style">
                                         
