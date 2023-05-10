@@ -121,14 +121,14 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 <div class="form-group {{ $errors->has('office_id') ? ' has-error' : '' }}">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Office Id</label>
+                    <label class="control-label">Office Id</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
                         <input autocomplete="off" id="office_id" type="text" class="form-control placeholder-no-fix" name="office_id" value="{{ old('office_id') }}" placeholder="Enter Office ID">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <label class="control-label">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
                         <input autocomplete="off" id="password" type="password" class="form-control placeholder-no-fix" name="password" placeholder="Enter Password">
