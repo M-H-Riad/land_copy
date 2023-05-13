@@ -1036,9 +1036,10 @@
 
                 <!-- Start DeepTubewell -->
             @endif
-            @if(Auth::user()->can(['manage_deeptubewell']))
+
+            @if(Auth::user()->can(['manage_deep_tubewell_source type']) && Auth::user()->can(['manage_deep_tubewell']))
                 <li class="heading">
-                    <h3 class="uppercase">Deep Tubewell</h3>
+                        <h3 class="uppercase">Deep Tubewell</h3>
                 </li>
                 <li class="nav-item deep_tubewell_source">
                     <a href="{{ URL::to('/deep-tubewell/source-type') }}">
@@ -1052,14 +1053,28 @@
                         <span class="title">ডিপ টিউবওয়েল</span>
                     </a>
                 </li>
-                <li class="nav-item log_report">
-                    <a href="{{ URL::to('/deep-tubewell/log-report') }}">
+            @elseif(Auth::user()->can(['manage_deep_tubewell_source type']))
+                <li class="heading">
+                        <h3 class="uppercase">Deep Tubewell</h3>
+                </li>
+                <li class="nav-item deep_tubewell_source">
+                    <a href="{{ URL::to('/deep-tubewell/source-type') }}">
                         <i class="fa fa-map-marker"></i>
-                        <span class="title">লগ রিপোর্ট</span>
+                        <span class="title">উৎসের ধরণ</span>
                     </a>
                 </li>
-
-
+            @elseif(Auth::user()->can(['manage_deep_tubewell']))
+                <li class="heading">
+                        <h3 class="uppercase">Deep Tubewell</h3>
+                </li>
+                <li class="nav-item deep_tubewell">
+                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">ডিপ টিউবওয়েল</span>
+                    </a>
+                </li>
+            @endif
+            @if(Auth::user()->can(['deep_tubewell_reports']))
                 <li class="heading">
                     <h3 class="uppercase">Deep Tubewell Reports</h3>
                 </li>
@@ -1071,6 +1086,72 @@
                 </li>
                 <!-- End DeepTubewell -->
             @endif
+            @if(Auth::user()->can(['manage_log_info']))
+                <li class="nav-item log_report">
+                    <a href="{{ URL::to('/deep-tubewell/log-report') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">লগ রিপোর্ট</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(Auth::user()->can(['manage_department']) && Auth::user()->can(['manage_designation']))
+                <li class="nav-item designation">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">Dept & Designation</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item designation">
+                            <a href="{{ URL::to('designation') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Designation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item department">
+                            <a href="{{ URL::to('department') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Department</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @elseif(Auth::user()->can(['manage_department']))
+                <li class="nav-item designation">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">Dept & Designation</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item department">
+                            <a href="{{ URL::to('department') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Department</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @elseif(Auth::user()->can(['manage_designation']))
+                <li class="nav-item designation">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-user-secret"></i>
+                        <span class="title">Dept & Designation</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item designation">
+                            <a href="{{ URL::to('designation') }}" class="nav-link ">
+                                <i class="fa fa-paper-plane-o"></i>
+                                <span class="title">Designation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
 
             @if(Auth::user()->hasRole('superadmin') and Auth::user()->user_name == 'sslrnd')
                 <li class="nav-item audit-trail">
@@ -1093,27 +1174,7 @@
                     <h3 class="uppercase">User Management</h3>
                 </li>
 
-                <li class="nav-item designation">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="fa fa-user-secret"></i>
-                        <span class="title">Dept & Designation</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item designation">
-                            <a href="{{ URL::to('designation') }}" class="nav-link ">
-                                <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Designation</span>
-                            </a>
-                        </li>
-                        <li class="nav-item department">
-                            <a href="{{ URL::to('department') }}" class="nav-link ">
-                                <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Department</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                
 
                 <li class="nav-item users">
                     
