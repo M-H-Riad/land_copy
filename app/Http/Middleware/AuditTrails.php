@@ -18,7 +18,6 @@ class AuditTrails {
     public function handle($request, Closure $next) {
         if (auth()->check() && !$request->ajax()) {
 
-            
             if ($request->isMethod('post')) {
                 AuditTrailLib::addTrail("Create Request", auth()->user()->user_name, 'Request submit for store data', 'Request', $request->fullUrl(), json_encode($request->all()));
             } elseif ($request->isMethod('put')) {

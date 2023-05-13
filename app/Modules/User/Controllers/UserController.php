@@ -12,6 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 use DB;
 use App\Mail\UserRegistration;
 use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -67,7 +68,8 @@ class UserController extends Controller {
             'designation_id' => 'required',
             'email'     => 'required|string|email|max:255',
             'office_id'     => 'required',
-            'password'  => 'nullable|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            'password'  => 'nullable|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            'confirm_password'  => 'same:password'
             
         ]);
 
@@ -264,8 +266,10 @@ class UserController extends Controller {
             'email'     => 'required|string|email|max:255|unique:users',
             'office_id'     => 'required|unique:users',
             'password'  => 'required|string|min:6|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/|regex:/[@$!%*#?&]/',
+
             
         ]);
+
         $remember_token=Str::random(60);
         $data = [
             'full_name' => $request['first_name'].' '.$request['last_name'],

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\User;
+
+use Illuminate\Support\Facades\Session ;
+
 class LoginController extends Controller
 {
     /*
@@ -56,6 +59,7 @@ class LoginController extends Controller
             }
 
             if(auth()->user()->status==1){
+                Session::put('last_active_time',time());
                 return redirect('/home');
             }
 
