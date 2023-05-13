@@ -186,7 +186,7 @@
                       <label for="pswd" class="col-md-4 control-label">Password</label>
 
                       <div class="col-md-6">
-                          <input id="pswd" type="password" class="form-control" name="password">
+                          <input id="pswd" type="password" class="form-control" name="password" placeholder="Enter Password">
                           <span id="password_error" class="text-danger"></span>
                           @if ($errors->has('password'))
                               <span class="help-block">
@@ -200,7 +200,7 @@
                       <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                       <div class="col-md-6">
-                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Enter Confirm Password">
                       </div>
                   </div>
 
@@ -262,6 +262,9 @@
 
   });
 
+  $('#pswd').keyup(function(e){
+        $("#password_error").html("Please give at least six length password. At least give One upper case, one lower case letter, one special character and one number"); 
+     });
 </script>
 
 @endsection

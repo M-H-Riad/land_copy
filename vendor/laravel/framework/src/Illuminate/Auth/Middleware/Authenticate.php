@@ -5,6 +5,8 @@ namespace Illuminate\Auth\Middleware;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Auth as auths;
+use Illuminate\Support\Facades\Session ;
 
 class Authenticate
 {
@@ -38,8 +40,14 @@ class Authenticate
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        $this->authenticate($guards);
+        if(time() - Session::get('last_active_time') > 1800){
+            Session::forget('last_active_time');
+            auths::logout();
+        } 
 
+        Session::put('last_active_time',time());
+
+        $this->authenticate($guards);
         return $next($request);
     }
 

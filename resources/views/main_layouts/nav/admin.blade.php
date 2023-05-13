@@ -914,8 +914,7 @@
                     </ul>
                 </li>
             @endif--}}
-
-
+     
 
             @if(Auth::user()->can(['manage_land']))
                 <li class="heading">

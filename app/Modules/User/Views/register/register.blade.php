@@ -191,7 +191,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password <span style="color:red;">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Enter Confirm Password">
                                 <span id="password_match" style="display:none;color:red;">Password and confirm password Didn't match !!</span>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
 <script> 
 
      $('#pswd').keyup(function(e){
-        $("#password_error").html("Please give at least six length Password. Atleast One upper case and one lower case letter and one number"); 
+        $("#password_error").html("Please give at least six length password. At least give One upper case, one lower case letter, one special character and one number"); 
      });
      $('#form_submit').click(function(){
          var password = $('#pswd').val();
