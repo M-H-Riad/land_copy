@@ -99,7 +99,7 @@ class UserController extends Controller {
         $user->phone = $request['phone'];
         $user->designation_id = $request['designation_id'];
         $user->email       = $request['email'];
-        $user->password    = bcrypt($request['password']);
+        // $user->password    = bcrypt($request['password']);
         $user->save();
 
         Session::flash('success','Successfully updated');
