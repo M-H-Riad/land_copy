@@ -182,7 +182,7 @@
                       </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                  <!-- <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                       <label for="pswd" class="col-md-4 control-label">Password</label>
 
                       <div class="col-md-6">
@@ -202,7 +202,7 @@
                       <div class="col-md-6">
                           <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Enter Confirm Password">
                       </div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">

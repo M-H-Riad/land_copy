@@ -3,8 +3,8 @@
 </div>
 <div style="width:90%;text-align: center; padding-bottom: 10px;float: left">
     <p class="title">ঢাকা পানি সরবরাহ ও পয়: নিষ্কাশন কর্তৃপক্ষ</p> 
-    <p class="title">ভূমি তথ্যাবলী</p>
-    @if(isset($zone))<p class="title">মডস {{ $zone->title }}</p>@endif
+    <p class="title">গভীর নলকূপের তথ্য</p>
+    
 </div>
 {{-- <div style="width: 50%;text-align: right;float: right">
     {PAGENO}{nbpg}

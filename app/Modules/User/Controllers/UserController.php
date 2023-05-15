@@ -68,8 +68,8 @@ class UserController extends Controller {
             'designation_id' => 'required',
             'email'     => 'required|string|email|max:255',
             'office_id'     => 'required',
-            'password'  => 'nullable|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
-            'confirm_password'  => 'same:password'
+            // 'password'  => 'nullable|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+            // 'confirm_password'  => 'same:password'
             
         ]);
 

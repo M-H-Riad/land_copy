@@ -34,7 +34,7 @@
         padding: 5px;
         border: 1px solid #0a0a0a;
     }
-</style>
+</style> 
 @if($deepTubewell)
     <table>
         <thead>

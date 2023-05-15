@@ -88,7 +88,7 @@ class DeepTubewellReportController extends Controller
     public function getDeeptubewellReportPdf(Request $request)
     {
         $title              = "Deep-Tubewell - " . date('Y-m-d H:i:s') . '.pdf';
-        $data['deep_infos']      = $this->__deep_tubewell_report_filter($request)->get();
+        $data['deep_infos'] = $this->__deep_tubewell_report_filter($request)->get();
         ini_set('memory_limit', '3072M');
         set_time_limit(300);
         $html               = view("DeepTubewell::report.deep_tubewell-report-pdf", $data);
@@ -129,7 +129,7 @@ class DeepTubewellReportController extends Controller
         exit;
     }
 
-}
+} 
 
 
 
