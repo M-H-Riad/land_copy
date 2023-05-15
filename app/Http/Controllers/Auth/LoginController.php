@@ -56,7 +56,7 @@ class LoginController extends Controller
             
             if(Auth::user()->status == 0){
                 Auth()->logout();
-                return redirect('/login')->withInput()->withErrors('Your access is disabled! Please contact your system admin.');
+                return redirect('/login')->withInput()->withErrors('Your account is inactive! Please check your email to active your account.');
             }
 
             if(auth()->user()->status==1){
