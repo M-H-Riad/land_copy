@@ -129,6 +129,96 @@ class DeepTubewellReportController extends Controller
         exit;
     }
 
+    private function __deep_tubewell_zone_report_filter($request)
+    {
+        $query = array();
+        if(isset($request->zone_id) && $request->zone_id != null){
+            $query['zone_id'] = $request->zone_id;
+        }
+
+        $getDeeptubewell   = DeepTubewell::where($query);
+        $getDeeptubewell->orderBy('created_at', 'DESC');
+        
+        $deepTubewells     = $getDeeptubewell->with(['zone', 'area', 'sourceType','sources']);
+        return $deepTubewells;
+
+    }
+    public function getDeeptubewellReportZone(Request $request)
+    {
+        $searchedData = 0;
+        if($request->has('zone_id')){
+            $searchedData = 1;
+        }
+
+        if($request->has('area_id')){
+            $searchedData = 1;
+        }
+       
+        if($request->has('deep_source_type_id')){
+            $searchedData = 1;
+        }
+    
+        if($request->has('onumoti_chukti_boraddo')){
+            $searchedData = 1;
+        }
+
+        $deep_infos = $this->__deep_tubewell_zone_report_filter($request)->paginate(10);
+        $zones    = Zone::pluck('title', 'id');
+        $deep_source_types    = DeepTubewellSourceType::pluck('title', 'id');
+        $areas      = Area::pluck('title', 'id');
+        
+        return view('DeepTubewell::report.deep_tubewell_zone-report', compact('deep_infos','searchedData','zones'));
+    }
+
+    public function getDeeptubewellZoneReportPdf(Request $request)
+    {
+        $title              = "Deep-Tubewell-Zone - " . date('Y-m-d H:i:s') . '.pdf';
+
+        $data['deep_infos'] = $this->__deep_tubewell_zone_report_filter($request)->get();
+        ini_set('memory_limit', '3072M');
+        set_time_limit(300);
+
+        $data['zone_infos'] = Zone::where('id', $request->zone_id)->get();
+        
+        // echo "<pre>";print_r($data['zone_infos']);die();
+        $html               = view("DeepTubewell::report.deep_tubewell_zone-report-pdf", $data);
+
+        $defaultConfig      = (new ConfigVariables())->getDefaults();
+        $fontDirs           = $defaultConfig['fontDir'];
+        $defaultFontConfig  = (new FontVariables())->getDefaults();
+        $fontData           = $defaultFontConfig['fontdata'];
+
+        $mpdf               = new mPDF([
+            'pagenumPrefix' => 'Page ',
+            'nbpgPrefix'    => ' of ',
+            'nbpgSuffix'    => '',
+            'margin_top'    => '45',
+            'tempDir'       => storage_path(),
+            'mode'          => 'utf-8',
+            'format'        => 'A4-L',
+            'fontDir'       => array_merge($fontDirs, [
+                public_path('fonts'),
+            ]),
+            'fontdata'      => $fontData + [
+                    'solaimanlipi'  => [
+                        'R'         => "SolaimanLipi.ttf",
+                        'useOTL'    => 0xFF,
+                    ],
+                ],
+            'default_font'  => 'solaimanlipi'
+        ]);
+
+        $mpdf->SetProtection(array('print'));
+
+        $mpdf->SetTitle($title);
+        $mpdf->SetAuthor("SSL Wireless");
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->SetHtmlHeader(view('DeepTubewell::report.deep_tubewell_zone-report-pdf-header',$data));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($title, 'I');
+        exit;
+    }
+
 } 
 
 

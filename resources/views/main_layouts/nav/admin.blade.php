@@ -1036,60 +1036,41 @@
                 <!-- Start DeepTubewell -->
             @endif
 
-            @if(Auth::user()->can(['manage_deep_tubewell_source type']) && Auth::user()->can(['manage_deep_tubewell']))
+            <li class="heading">
+                <h3 class="uppercase">DEEP TUBEWELL SETTING</h3>
+            </li>
+
+            <li class="nav-item land_zone">
+                <a href="{{ URL::to('/land/zone') }}">
+                    <i class="fa fa-map-marker"></i>
+                    <span class="title">জোন</span>
+                </a>
+            </li>
+
+            <li class="{{ request()->is('land/area') ? 'active' : '' }}">
+                <a href="{{ URL::to('/land/area') }}">
+                    <i class="fa fa-map-signs"></i>
+                    <span class="title">মৌজা </span>
+                </a>
+            </li>
+            @if(Auth::user()->can(['manage_deep_tubewell_source type']))
+            <li class="nav-item deep_tubewell_source">
+                <a href="{{ URL::to('/deep-tubewell/source-type') }}">
+                    <i class="fa fa-map-marker"></i>
+                    <span class="title">উৎসের ধরণ</span>
+                </a>
+            </li>
+            @endif
+
+            @if(Auth::user()->can(['manage_deep_tubewell']))
                 <li class="heading">
-                        <h3 class="uppercase">Deep Tubewell</h3>
+                        <h3 class="uppercase">DEEP TUBEWELL</h3>
                 </li>
-                <li class="nav-item deep_tubewell_source">
-                    <a href="{{ URL::to('/deep-tubewell/source-type') }}">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="title">উৎসের ধরণ</span>
-                    </a>
-                </li>
+                
                 <li class="nav-item deep_tubewell">
                     <a href="{{ URL::to('/deep-tubewell/deep-tubewell') }}">
                         <i class="fa fa-map-marker"></i>
                         <span class="title">ডিপ টিউবওয়েল</span>
-                    </a>
-                </li>
-            @elseif(Auth::user()->can(['manage_deep_tubewell_source type']))
-                <li class="heading">
-                        <h3 class="uppercase">Deep Tubewell</h3>
-                </li>
-                <li class="nav-item deep_tubewell_source">
-                    <a href="{{ URL::to('/deep-tubewell/source-type') }}">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="title">উৎসের ধরণ</span>
-                    </a>
-                </li>
-            @elseif(Auth::user()->can(['manage_deep_tubewell']))
-                <li class="heading">
-                        <h3 class="uppercase">Deep Tubewell</h3>
-                </li>
-                <li class="nav-item deep_tubewell">
-                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell') }}">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="title">ডিপ টিউবওয়েল</span>
-                    </a>
-                </li>
-            @endif
-            @if(Auth::user()->can(['deep_tubewell_reports']))
-                <li class="heading">
-                    <h3 class="uppercase">Deep Tubewell Reports</h3>
-                </li>
-                <li class="nav-item deep_tubewell_source">
-                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell-report') }}">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="title">Land wise deep-tubewell report</span>
-                    </a>
-                </li>
-                <!-- End DeepTubewell -->
-            @endif
-            @if(Auth::user()->can(['manage_log_info']))
-                <li class="nav-item log_report">
-                    <a href="{{ URL::to('/deep-tubewell/log-report') }}">
-                        <i class="fa fa-map-marker"></i>
-                        <span class="title">লগ রিপোর্ট</span>
                     </a>
                 </li>
             @endif
@@ -1105,13 +1086,13 @@
                         <li class="nav-item designation">
                             <a href="{{ URL::to('designation') }}" class="nav-link ">
                                 <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Designation</span>
+                                <span class="title">পদবি</span>
                             </a>
                         </li>
                         <li class="nav-item department">
                             <a href="{{ URL::to('department') }}" class="nav-link ">
                                 <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Department</span>
+                                <span class="title">বিভাগ</span>
                             </a>
                         </li>
                     </ul>
@@ -1127,7 +1108,7 @@
                         <li class="nav-item department">
                             <a href="{{ URL::to('department') }}" class="nav-link ">
                                 <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Department</span>
+                                <span class="title">বিভাগ</span>
                             </a>
                         </li>
                     </ul>
@@ -1143,13 +1124,46 @@
                         <li class="nav-item designation">
                             <a href="{{ URL::to('designation') }}" class="nav-link ">
                                 <i class="fa fa-paper-plane-o"></i>
-                                <span class="title">Designation</span>
+                                <span class="title">পদবি</span>
                             </a>
                         </li>
                     </ul>
                 </li>
             @endif
 
+            @if(Auth::user()->can(['deep_tubewell_reports']))
+                <li class="heading">
+                    <h3 class="uppercase">DEEP TUBEWELL REPORT</h3>
+                </li>
+                <li class="nav-item deep_tubewell_source">
+                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell-report') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">Land wise deep-tubewell report</span>
+                    </a>
+                </li>
+                <li class="nav-item deep_tubewell_source">
+                    <a href="{{ URL::to('/deep-tubewell/deep-tubewell-report-zone') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">Zone wise deep-tubewell report</span>
+                    </a>
+                </li>
+                <!-- End DeepTubewell -->
+            @endif
+
+
+
+
+            @if(Auth::user()->can(['manage_log_info']))
+                <li class="heading">
+                    <h3 class="uppercase">LOG REPORT</h3>
+                </li>
+                <li class="nav-item log_report">
+                    <a href="{{ URL::to('/deep-tubewell/log-report') }}">
+                        <i class="fa fa-map-marker"></i>
+                        <span class="title">লগ রিপোর্ট</span>
+                    </a>
+                </li>
+            @endif
 
 
             @if(Auth::user()->hasRole('superadmin') and Auth::user()->user_name == 'sslrnd')

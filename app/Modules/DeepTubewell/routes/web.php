@@ -21,4 +21,7 @@
     Route::get('deep-tubewell-report', 'DeepTubewellReportController@getDeeptubewellReport')->name('deep-tubewell-report');
     Route::get('deep-tubewell-report.pdf', 'DeepTubewellReportController@getDeeptubewellReportPdf')->name('deep-tubewell-report.pdf');
 
+    Route::get('deep-tubewell-report-zone', 'DeepTubewellReportController@getDeeptubewellReportZone')->name('deep-tubewell-report-zone');
+    Route::get('deep-tubewell-zone-report.pdf', 'DeepTubewellReportController@getDeeptubewellZoneReportPdf')->name('deep-tubewell-zone-report.pdf');
+
 });   
