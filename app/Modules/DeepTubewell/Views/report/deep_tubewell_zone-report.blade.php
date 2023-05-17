@@ -127,8 +127,8 @@
                             @endforeach
                             <tr>
                                 
-                                <td colspan="5" class="text-right"> <b>মোট : </b></td>
-                                <td colspan="3" class="text-left"> <b>{{$total_land}} একর</b></td>
+                                <td colspan="4" class="text-right"> <b>মোট : </b></td>
+                                <td colspan="4" class="text-left"> <b>{{$total_land}} একর</b></td>
                                 
                             </tr>
                         @endif
