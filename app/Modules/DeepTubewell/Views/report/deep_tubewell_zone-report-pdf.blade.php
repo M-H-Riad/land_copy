@@ -93,7 +93,7 @@
         @endforeach
         <tr>
             
-            <td colspan="11" class="text-right"> <b>মোট : </b></td>
+            <td colspan="10" class="text-right"> <b>মোট : </b></td>
             <td colspan="2" class="text-left"> <b>{{$total_land}} একর</b></td>
             
         </tr>

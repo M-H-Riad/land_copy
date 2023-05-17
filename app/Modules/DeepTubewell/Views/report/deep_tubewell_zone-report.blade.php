@@ -40,7 +40,7 @@
                     {{Form::model($_REQUEST,['method'=>'get','form-horizontal','role'=>'form'])}}
                     <div class="col-md-12 side-padding-none">
                         <div class="col-md-3" style="margin-bottom:5px;">
-                        {!! Form::select('zone_id', $zones, null, ['class' => 'form-control select2', 'placeholder' => 'জোন', 'style' => 'width:100%']) !!}
+                        {!! Form::select('zone_id', $zones, null, ['class' => 'form-control select2',  'style' => 'width:100%']) !!}
                         </div>
                         
                         <div class="col-md-6" style="margin-bottom:5px;">
@@ -123,7 +123,7 @@
                             @endforeach
                             <tr>
                                 
-                                <td colspan="11" class="text-right"> <b>মোট : </b></td>
+                                <td colspan="10" class="text-right"> <b>মোট : </b></td>
                                 <td colspan="2" class="text-left"> <b>{{$total_land}} একর</b></td>
                                 
                             </tr>
