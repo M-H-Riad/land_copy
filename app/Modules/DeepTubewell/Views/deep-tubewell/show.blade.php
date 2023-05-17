@@ -68,6 +68,10 @@
                             </dl>
                             
                             <dl class="dl-horizontal">
+                                <dt>দাগ নং</dt>
+                                <dd>{{$deep_tubewell->dag_no}}</dd>
+                            </dl>
+                            <dl class="dl-horizontal">
                                 <dt>খতিয়ান নং</dt>
                                 <dd>{{$deep_tubewell->khotiyan_no}}</dd>
                             </dl>

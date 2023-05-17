@@ -64,7 +64,7 @@
             
                 <tr style="border: 1px solid black;">
                     <td>{{ $i++ }}</td>
-                    <td>{{$deep_info->zone->deep_tubewell_place_name}}</td>
+                    <td>{{$deep_info->deep_tubewell_place_name}}</td>
                     <td>{{$deep_info->zone->title}}</td>
                     <td>{{$deep_info->area->title}}</td>
                     <td>{{$deep_info->sourceType->title}}</td>

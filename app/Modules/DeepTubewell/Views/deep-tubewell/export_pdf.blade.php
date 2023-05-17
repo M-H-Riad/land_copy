@@ -54,7 +54,7 @@
         </thead>
         <tbody>
         @if(count($deep_tubewells) > 0)
-           
+           <?php $i = 1; ?>
             @foreach($deep_tubewells as $deepTubewell)
                 <tr>
                     <td>{{ en2bn($i++) }}</td>
