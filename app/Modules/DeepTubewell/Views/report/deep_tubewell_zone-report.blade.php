@@ -76,14 +76,16 @@
                             <th style="padding: 4px !important;">স্থাপনা/গভীর নলকূপের জায়গার নাম</th>
                             <!-- <th style="padding: 4px !important;">জোন</th> -->
                             <th style="padding: 4px !important;">মৌজা</th>
-                            <th style="padding: 4px !important;">উৎসের ধরণ</th>
-                            <th style="padding: 4px !important;">উৎস</th>
-                            <th style="padding: 4px !important;">অনুমতি/চুক্তি/বরাদ্দ</th>
+                            <!-- <th style="padding: 4px !important;">উৎসের ধরণ</th>
+                            
+                            
                             <th style="padding: 4px !important;">অনুমতি/চুক্তি/বরাদ্দ তারিখ</th>
                             <th style="padding: 4px !important;">দখলপত্র তারিখ</th>
-                            <th style="padding: 4px !important;">খতিয়ান নং</th>
-                            <th style="padding: 4px !important;">দাগ নং</th>
-                            <th style="padding: 4px !important;">জমির পরিমান (একর)</th>
+                            <th style="padding: 4px !important;">খতিয়ান নং</th> -->
+                            <th style="padding: 4px !important;">খতিয়ান/দাগ নং</th>
+                            <th style="padding: 4px !important;">জমির পরিমান</th>
+                            <th style="padding: 4px !important;">প্রাপ্তির উৎস</th>
+                            <th style="padding: 4px !important;">অনুমতি/চুক্তি/দখলপত্র</th>
                             <th style="padding: 4px !important;">মন্তব্য</th>
                         </tr>
                         </thead>
@@ -97,7 +99,14 @@
                                         <td>{{$deep_info->deep_tubewell_place_name}}</td>
                                         <!-- <td>{{$deep_info->zone->title}}</td> -->
                                         <td>{{$deep_info->area->title}}</td>
-                                        <td>{{$deep_info->sourceType->title}}</td>
+                                        <!-- <td>{{$deep_info->sourceType->title}}</td>
+                                        
+                                        <td>{{$deep_info->onumoti_chukti_boraddo_date}}</td>
+                                        <td>{{$deep_info->dokholpotro_date}}</td>
+                                        
+                                        <td>{{$deep_info->khotiyan_no}}</td> -->
+                                        <td>{{$deep_info->dag_no}}</td>
+                                        <td>{{$deep_info->jomir_poriman}}</td>
                                         <td>{{$deep_info->sources->title}}</td>
                                         <td>
                                             @if($deep_info->onumoti_chukti_boraddo==1)
@@ -108,12 +117,7 @@
                                                 {{ বরাদ্দ }}
                                             @endif
                                         </td>
-                                        <td>{{$deep_info->onumoti_chukti_boraddo_date}}</td>
-                                        <td>{{$deep_info->dokholpotro_date}}</td>
                                         
-                                        <td>{{$deep_info->khotiyan_no}}</td>
-                                        <td>{{$deep_info->dag_no}}</td>
-                                        <td>{{$deep_info->jomir_poriman}}</td>
                                         <td>{{$deep_info->destination}}</td>
                                     </tr>
                                 <?php 
@@ -123,8 +127,8 @@
                             @endforeach
                             <tr>
                                 
-                                <td colspan="10" class="text-right"> <b>মোট : </b></td>
-                                <td colspan="2" class="text-left"> <b>{{$total_land}} একর</b></td>
+                                <td colspan="5" class="text-right"> <b>মোট : </b></td>
+                                <td colspan="3" class="text-left"> <b>{{$total_land}} একর</b></td>
                                 
                             </tr>
                         @endif

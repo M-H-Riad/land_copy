@@ -46,14 +46,16 @@
             <th>স্থাপনা/গভীর নলকূপের জায়গার নাম</th>
             <!-- <th>জোন</th> -->
             <th>মৌজা</th>
-            <th>উৎসের ধরণ</th>
-            <th>উৎস</th>
-            <th>অনুমতি/চুক্তি/বরাদ্দ</th>
+            <!-- <th>উৎসের ধরণ</th>
+            
             <th>অনুমতি/চুক্তি/বরাদ্দ তারিখ</th>
             <th>দখলপত্র তারিখ</th>
-            <th>খতিয়ান নং</th>
-            <th>দাগ নং</th>
-            <th>জমির পরিমান (একর)</th>
+            <th>খতিয়ান নং</th> -->
+            <th>খতিয়ান/দাগ নং</th>
+            <th>জমির পরিমান</th>
+            <th>প্রাপ্তির উৎস</th>
+            <th>অনুমতি/চুক্তি/দখলপত্র</th>
+            
             <th>মন্তব্য</th>
         </tr>
     </thead>
@@ -67,7 +69,14 @@
                     <td>{{$deep_info->deep_tubewell_place_name}}</td>
                     <!-- <td>{{$deep_info->zone->title}}</td> -->
                     <td>{{$deep_info->area->title}}</td>
-                    <td>{{$deep_info->sourceType->title}}</td>
+                    <!-- <td>{{$deep_info->sourceType->title}}</td>
+                    
+                    <td>{{$deep_info->onumoti_chukti_boraddo_date}}</td>
+                    <td>{{$deep_info->dokholpotro_date}}</td>
+                    
+                    <td>{{$deep_info->khotiyan_no}}</td> -->
+                    <td>{{$deep_info->dag_no}}</td>
+                    <td>{{$deep_info->jomir_poriman}}</td>
                     <td>{{$deep_info->sources->title}}</td>
                     <td>
                         @if($deep_info->onumoti_chukti_boraddo==1)
@@ -78,12 +87,6 @@
                             {{ বরাদ্দ }}
                         @endif
                     </td>
-                    <td>{{$deep_info->onumoti_chukti_boraddo_date}}</td>
-                    <td>{{$deep_info->dokholpotro_date}}</td>
-                    
-                    <td>{{$deep_info->khotiyan_no}}</td>
-                    <td>{{$deep_info->dag_no}}</td>
-                    <td>{{$deep_info->jomir_poriman}}</td>
                     <td>{{$deep_info->destination}}</td>
                 </tr>
             <?php 
@@ -92,10 +95,8 @@
             ?>
         @endforeach
         <tr>
-            
-            <td colspan="10" class="text-right"> <b>মোট : </b></td>
-            <td colspan="2" class="text-left"> <b>{{$total_land}} একর</b></td>
-            
+            <td colspan="5" class="text-right"> <b>মোট : </b></td>
+            <td colspan="3" class="text-left"> <b>{{$total_land}} একর</b></td>
         </tr>
     @endif
     </tbody>
